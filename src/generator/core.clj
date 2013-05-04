@@ -1,4 +1,5 @@
 (ns generator.core
+  (:require [clojure.string :as string])
   (:use [cljss.core :only (compact-css)]))
 
 
@@ -16,8 +17,10 @@
 (def inside-rules list)
 (def group-rules concat)
 
-(defn css-comment [c]
-  (str "/* " c " */"))
+(defn css-comment [& c]
+  (str "/* "
+       (string/join \newline c)
+       " */"))
 
 (defn make-theme-path
   "Given a theme name, make the absolute path

@@ -1,12 +1,27 @@
 (ns generator.lesserdark.theme
+  (:require [cljss.units.colors :as c])
   (:use generator.core
         [cljss.core :only (compact-css)]
-        clojure.repl)
-  (:import java.io.File))
+
+        clojure.repl
+        ))
 
 (def theme-name "dark2")
 
+(def background-color
+  (c/rgba 0x26 0x26 0x26))
 
+(def CM-selected
+  (c/rgba 0x45 0x44 0x3B))
+
+(def CM-gutter-text-color
+  (c/rgba 0x70 0x70 0x70))
+
+(def keyword-color
+  (c/rgba 0x59 0x9e 0xff))
+
+(def atom-color
+  (c/rgba 0xC2 0xB4 0x70))
 
 (def theme
   (rules
@@ -15,71 +30,71 @@
    "  Ported to CodeMirror by Peter Kroon"
    "*/"
 
-   [:#multi.dark2  :background :#262626 ]
+   [:#multi.dark2  :background background-color ]
    [[:div.CodeMirror :.cm-s-dark2
      :span.CodeMirror-matchingbracket]
     :color :#7EFC7E]
 
-   ""
-   ""
-   "/*Inside parent theme*/"
-   ""
    [:.cm-s-dark2
 
     :line-height :1.3em
-    :background :#262626
+    :background background-color
     :color :#EBEFE7
-    :text-shadow [0 :-1px :1px :#262626]
+    :text-shadow [0 :-1px :1px background-color]
 
-    [:div.CodeMirror-selected
-     :background: [:#45443B :!important]]
+    (css-comment
+     ""
+     "Inside parent theme"
+     "")
 
-    [:.CodeMirror-cursor
-     :border-left: [:1px :solid :white :!important]]
+    (inside-rules
+     [:div.CodeMirror-selected
+      :background: [CM-selected :!important]]
 
-    "/*editable code holder*/"
+     [:.CodeMirror-cursor
+      :border-left: [:1px :solid :white :!important]]
 
-    [:.CodeMirror-lines
-     :margin-left :3px
-     :margin-right :3px]
+     "/*editable code holder*/"
 
-    [:.CodeMirror-gutter
-     :background :#262626
-     :border-right [:1px :solid :#aaa]
-     :padding-right :3px
-     :min-width :2.5em ]
+     [:.CodeMirror-lines
+      :margin-left :3px
+      :margin-right :3px]
 
-    [:.CodeMirror-gutter-text :color :#777]
-    [:span.cm-keyword    :color :#599eff]
-    [:span.cm-atom       :color :#C2B470]
-    [:span.cm-number     :color :#B35E4D]
-    [:span.cm-def        :color :white]
-    [:span.cm-variable   :color :#D9BF8C]
-    [:span.cm-variable-2 :color :#669199]
-    [:span.cm-variable-3 :color :white]
-
-    [:span.cm-property   :color :#92A75C]
-    [:span.cm-operator   :color :#92A75C]
-    [:span.cm-comment    :color :#666]
-    [:span.cm-string     :color :#BCD279]
+     [:.CodeMirror-gutter
+      :background background-color
+      :border-right [:1px :solid :#aaa]
+      :padding-right :3px
+      :min-width :2.5em ]
 
 
-    [:span.cm-string-2   :color :#f50]
-    [:span.cm-meta       :color :#738C73]
-    [:span.cm-error      :color :#9d1e15]
-    [:span.cm-qualifier  :color :#555]
-    [:span.cm-builtin    :color :#ff9e59]
+     [:.CodeMirror-gutter-text :color CM-gutter-text-color]
+     [:span.cm-keyword    :color keyword-color]
+     [:span.cm-atom       :color atom-color]
+     [:span.cm-number     :color :#B35E4D]
+     [:span.cm-def        :color :white]
+     [:span.cm-variable   :color :#D9BF8C]
+     [:span.cm-variable-2 :color :#669199]
+     [:span.cm-variable-3 :color :white]
 
-    [:span.cm-bracket    :color :#EBEFE7]
-    [:span.cm-tag        :color :#669199]
-    [:span.cm-attribute  :color :#00c]
-    [:span.cm-header     :color :#a0a]
-    [:span.cm-quote      :color :#090]
-    [:span.cm-hr         :color :#999]
-    [:span.cm-link       :color :#00c]
+     [:span.cm-property   :color :#92A75C]
+     [:span.cm-operator   :color :#92A75C]
+     [:span.cm-comment    :color :#666]
+     [:span.cm-string     :color :#BCD279]
 
-    (css-comment "I'm there")
-    ]
+
+     [:span.cm-string-2   :color :#f50]
+     [:span.cm-meta       :color :#738C73]
+     [:span.cm-error      :color :#9d1e15]
+     [:span.cm-qualifier  :color :#555]
+     [:span.cm-builtin    :color :#ff9e59]
+
+     [:span.cm-bracket    :color :#EBEFE7]
+     [:span.cm-tag        :color :#669199]
+     [:span.cm-attribute  :color :#00c]
+     [:span.cm-header     :color :#a0a]
+     [:span.cm-quote      :color :#090]
+     [:span.cm-hr         :color :#999]
+     [:span.cm-link       :color :#00c])]
 ))
 
 (write-css theme-name theme)
