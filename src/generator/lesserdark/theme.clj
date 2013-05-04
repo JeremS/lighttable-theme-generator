@@ -1,10 +1,12 @@
 (ns generator.lesserdark.theme
-  (:use [cljss.core :only (compact-css)]
+  (:use generator.core
+        [cljss.core :only (compact-css)]
         clojure.repl)
   (:import java.io.File))
 
-(def rules vector)
-(def group-rules concat)
+(def theme-name "dark2")
+
+
 
 (def theme
   (rules
@@ -76,43 +78,9 @@
     [:span.cm-hr         :color :#999]
     [:span.cm-link       :color :#00c]
 
-    "/*I'm here*/"
+    (css-comment "I'm there")
     ]
-
-
-
-
-
 ))
 
+(write-css theme-name theme)
 
-
-(def home-path
-  (System/getProperty "user.home"))
-
-(def file-separator
-  (System/getProperty "file.separator"))
-
-(def lighttable-theme-directory
-  ".lighttable/css/themes")
-
-(def theme-name "dark2")
-(def theme-css-class (str ".cm-s-" theme-name))
-
-(def theme-path
-  (str home-path file-separator
-       lighttable-theme-directory file-separator
-       theme-name
-       ".css"))
-
-
-(defn compile-css [out-fn]
-  (out-fn (apply compact-css theme)))
-
-(defn print-css []
-  (compile-css println))
-
-(defn write-css []
-  (compile-css (partial spit theme-path)))
-
-(write-css )
