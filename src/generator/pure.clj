@@ -87,63 +87,72 @@
     [:#side :.clients :.list :.active]})
 
 (def inputs
-  [:#side #{:.navigate :.command} :input])
+  #{[:#side #{:.navigate :.command} :input]
+    [:#find-bar :input]})
 
 (def side-elements
   #{[:.filter-list #{:.selected (-> :li hover)}]})
 
+
+;; TODO: add search and minibuffer
 (def boxes
   #{[:.inline-result :.truncated]
     [:.inline-result.open :.full]
     [:#side :.clients (c-> :.list :ul :li)]
-    [:#side :.clients :.connector :li]})
+    [:#side :.clients :.connector :li]
+    :#statusbar
+    :.cm-searching})
 
 ;; Style
 (defrules skin-style
   [first-class-containers
    :background-color default-bg-color
    :color default-text-color]
-  ""
-  ""
+  \newline
+  \newline
 
   (css-comment "button style")
   [buttons button-style]
 
-  ""
+  \newline
   (css-comment "selectables style")
   [selected selected-style]
 
-  ""
+  \newline
   (css-comment "input style")
   [inputs input-style]
 
-  ""
+  \newline
   (css-comment "Side lists")
   [side-elements filter-list-style]
   [[:#side :.workspace :li (-> :p hover after)]
    workspace-selection-style]
 
-  ""
+  \newline
   (css-comment "clients")
   [#{[:#side :.clients (c-> :.list :ul (c-+ :li :li))]
      [:#side :.clients :.connector :li]}
    :margin-top :3px]
 
-  ""
-  (css-comment "misc")
-  [[:#multi :.list] :margin-left :1px]
-
-  ""
+  \newline
   (css-comment "boxes")
   [boxes box-style]
 
   [[:.inline-exception :pre]
    :border [:2px :dotted :red]]
 
-  ""
+  \newline
   (css-comment "Underlining propositions")
   [[:.filter-list :em] :border-bottom [:1px :solid default-text-color]]
-  ""
+
+  \newline
+  (css-comment "misc")
+  [:#multi
+   [:.list :margin-left :1px]
+   [[:.tabset :+ :.tabset]
+    :border-left [:1px :dotted default-text-color]]]
+
+  \newline
   (css-comment "tests"))
 
 (def skin
@@ -156,4 +165,4 @@
 
 ; eval to install in the light table folder.
 ;(write-theme theme-name default-theme)
-;(write-skin theme-name skin)
+(write-skin theme-name skin)

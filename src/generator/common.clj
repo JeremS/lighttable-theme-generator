@@ -121,6 +121,10 @@
    ; MAIN PANE
    :#multi "Main pane."
 
+   [:#multi :.tabsets] ""
+   [:#multi :.tabset] ""
+   [:#multi :.tabset :+ :.tabset] "Used to put vertical bar between tabsets"
+
    ; multi .list -> tabs names
    [:#multi :.list] "Tabs bar"
    [:#multi :.list :li]  "Tabs"
@@ -199,7 +203,7 @@
    [:#sidebar (-> :li hover)] ""
    [:#sidebar :.current] ""
 
-   [:#side :.content] "Content of the selected side menu, is folded when inactive."
+   [:#side :.content] "Content of the selected side menu, it is folded when inactive."
 
    [:#side :.open] ""
    [:#side :.open :ul.files] ""
