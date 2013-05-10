@@ -1,8 +1,11 @@
 (ns generator.common
-  (:use [cljss.core]))
+  (:use cljss.core))
+
+;; Attempt at documenting the relevant selector when it comes to style LT
 
 (def code-mirror-classes
-  {; BASICS
+  {
+   ; BASICS
    :.CodeMirror "Set height, width, borders, and global font properties here"
    :.CodeMirror-scroll "Set scrolling behaviour here"
 
@@ -16,16 +19,23 @@
    :.CodeMirror-linenumbers ""
    :.CodeMirror-linenumber ""
 
-   ; COMPLETION ?
-   :.CodeMirror-hints ""
-   [:.CodeMirror-hints :ul :li] ""
-   [:.CodeMirror-hints :input] ""
-   [:.CodeMirror-hints :.selected]
+   ; COMPLETION
+   :.CodeMirror-hints "Completion box"
+   [:.CodeMirror-hints :ul :li] "Completion choices"
+   [:.CodeMirror-hints :input] "Text at the top of the completion box."
+   [:.CodeMirror-hints :.selected] "Selected choice"
 
    ; CURSOR
    [:.CodeMirror :div.CodeMirror-cursor] ""
 
-   ; Shown when moving in bi-directional text
+   ; ???
+   [:.cm-s-default :.CodeMirror-selected] ""
+   [:.cm-s-default :.CodeMirror-focused :.CodeMirror-selected] ""
+
+   [:.cm-SUBST] ""
+   [:.cm-s-default :span.cm-SUBST] ""
+
+   ; Shown when moving in bi-directional text ???
    [:.CodeMirror :div.CodeMirror-secondarycursor] ""
    [:.CodeMirror.cm-keymap-fat-cursor :div.CodeMirror-cursor] ""
    [:.CodeMirror :div.CodeMirror-cursor.CodeMirror-overwrite] "Can style cursor different in overwrite (non-insert) mode"
@@ -63,6 +73,8 @@
    [:.cm-s-default :.cm-hr] ""
    [:.cm-s-default :.cm-link] ""
 
+   [:.cm-s-default :span.cm-bracket0] ""
+   [:.cm-s-default :span.cm-bracket1] ""
    [:.cm-s-default :span.cm-bracket2] ""
    [:.cm-s-default :span.cm-bracket3] ""
    [:.cm-s-default :span.cm-bracket4] ""
@@ -91,7 +103,7 @@
 (def lighttable-skin
   {
    ; INLINE RESULTS
-   :.inline-result "Inline result wrapper"
+   :.inline-result "Inline result wrapper, not visible I think."
    [:.inline-result :.truncated] "Inline results when truncated"
    [:.inline-result.open :.full] "Inline results when opened"
 
@@ -115,11 +127,11 @@
 
    ; current tab
    [:#multi :.list :.active] "Tab that's got the cursor"
-   [:#multi :.list :li:hover] ""
+   [:#multi :.list :li:hover] "..."
 
    ; unsaved tab
    [:#multi :.list :.dirty] "Tabs modified & not saved"
-   [:#multi :.list (-> :.dirty after)] "Used to put a star"
+   [:#multi :.list (-> :.dirty after)] "Used to put a star on dirty tabs"
 
    [:#multi :.list.dragging :li] "Moving tab how does that works..."
 
@@ -159,8 +171,8 @@
 
 
    ; POPUP
-   :.popup "Popup for confirmations, new versions ready..."
-   (c-> :.popup :div :div) "???"
+   :.popup "Popup for confirmations, new versions ready... contains the whole screen"
+   (c-> :.popup :div :div) "The div enclosing the popup message"
    [:.popup :.button] ""
    [:.popup (-> :.button hover)] ""
    [:.popup :.button.active] ""
@@ -182,12 +194,12 @@
    ; LEFT PANE
    [:#side "::-webkit-scrollbar-thumb"] ""
 
-   :#sidebar-wrapper ""
+   :#sidebar-wrapper "Wraps the whole side area, is never folded, just transparent."
 
    [:#sidebar (-> :li hover)] ""
    [:#sidebar :.current] ""
 
-   [:#side :.content] ""
+   [:#side :.content] "Content of the selected side menu, is folded when inactive."
 
    [:#side :.open] ""
    [:#side :.open :ul.files] ""
@@ -202,7 +214,7 @@
 
    [:#side :.navigate :input] ""
 
-   [:.filter-list] ""
+   [:.filter-list] "List used in menus like navigate"
    [:.filter-list :em] ""
    [:.filter-list :.selected] ""
    [:.filter-list (-> :li hover)] ""
@@ -216,14 +228,14 @@
    [:#side :.workspace (c-> :.recent :div :ul :li)] ""
    [:#side :.workspace (c-> :.recent :div :ul (-> :li first-child))] ""
    [:#side :.workspace (c-> :.recent :div :ul (-> :li last-child))] ""
-   [:#side :.workspace (c-> :.recent :div :ul (c-+ :li + :li))] ""
+   [:#side :.workspace (c-> :.recent :div :ul (c-+ :li  :li))] ""
    [:#side :.workspace (c-> :.recent :div :ul (-> :li hover))] ""
-   [:#side :.workspace (c-> :.recent :div :ul (c-+ (-> :li hover) + :li))] ""
+   [:#side :.workspace (c-> :.recent :div :ul (c-+ (-> :li hover) :li))] ""
    [:#side :.workspace :.recent (-> :h2 hover)] ""
 
 
    ; CONNECT ?
-   [:#side :.clients (c-> :.list :ul :li)] ""
+   [:#side :.clients (c-> :.list :ul :li)] "Clients wrappers"
    [:#side :.clients :h2] ""
    [:#side :.clients :td] ""
    [:#side :.clients (c-+ :td :td)] ""
@@ -284,3 +296,10 @@
    [:.docs "::-webkit-scrollbar-thumb"] ""
 
    })
+
+
+(defn CM-sels []
+  (-> code-mirror-classes keys set))
+
+(defn LT-sels []
+  (-> lighttable-skin keys set))
