@@ -43,7 +43,7 @@
     :text-shadow :none
     :border [:1px :dotted  default-bg-color]]])
 
-(defrules selected-style
+(def selected-style
   (list
    (default-transition :box-shadow)
    :text-shadow :none
