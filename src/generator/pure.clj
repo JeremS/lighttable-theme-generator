@@ -96,8 +96,7 @@
   #{[:.inline-result :.truncated]
     [:.inline-result.open :.full]
     [:#side :.clients (c-> :.list :ul :li)]
-    [:#side :.clients :.connector :li]
-    [:.inline-exception :pre]})
+    [:#side :.clients :.connector :li]})
 
 ;; Style
 (defrules skin-style
@@ -138,23 +137,23 @@
   (css-comment "boxes")
   [boxes box-style]
 
+  [[:.inline-exception :pre]
+   :border [:2px :dotted :red]]
+
   ""
   (css-comment "Underlining propositions")
   [[:.filter-list :em] :border-bottom [:1px :solid default-text-color]]
   ""
   (css-comment "tests"))
 
-
 (def skin
   (group-rules
    default-skin
    skin-style))
 
-(write-skin theme-name skin)
-
-
-
 (defrules default-theme
-  [(make-theme-css-class theme-name) reset-colors])
+  (css-comment "Right now use the code miror default theme."))
 
-(write-theme theme-name default-theme)
+; eval to install in the light table folder.
+;(write-theme theme-name default-theme)
+;(write-skin theme-name skin)
