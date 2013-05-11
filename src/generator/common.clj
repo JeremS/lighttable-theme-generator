@@ -160,18 +160,18 @@
    [:.console :li :.line] "???"
 
    ; ???
-   :#intro  "???"
+   :#intro  "Welcome tab."
 
    ; INSTAREPL
-   [:#instarepl :.main] ""
-   [:#instarepl :.error] ""
-   [:#instarepl :.livetoggler] ""
-   [:#instarepl :.livetoggler.off] ""
+   [:#instarepl :.main] "Editor part of the instarepl"
+   [:#instarepl :.error] "???"
+   [:#instarepl :.livetoggler] "Live button"
+   [:#instarepl :.livetoggler.off] "Live button when auto eval off"
    [:#instarepl (-> :.livetoggler.off hover)] ""
-   [:#instarepl :.usage] ""
-   [:#instarepl :.usage.result] ""
-   [:#instarepl :.usage.exception] ""
-   [:#instarepl :.iresult] ""
+   [:#instarepl :.usage] "Boxes containing values of variables"
+   [:#instarepl :.usage.result] "Specific for a result"
+   [:#instarepl :.usage.exception] "Specific for an exception"
+   [:#instarepl :.iresult] "???"
 
 
    ; POPUP
@@ -191,7 +191,7 @@
    [:#markdown-preview :.preview :pre] ""
 
    ; VERSION PANE
-   [:#version-info :.info :dt] ""
+   [:#version-info :.info] ""
    [:#version-info :.button] ""
    [:#version-info (-> :.button hover)] ""
 
@@ -219,13 +219,13 @@
    [:#side :.navigate :input] ""
 
    [:.filter-list] "List used in menus like navigate"
-   [:.filter-list :em] ""
+   [:.filter-list :em] "Corresponding characters in the filter list."
    [:.filter-list :.selected] ""
    [:.filter-list (-> :li hover)] ""
    [:.filter-list :.selected :em] ""
    [:.filter-list (-> :li hover) :em] ""
 
-   [:#side :.workspace :ul.buttons (-> :li hover (css-not :.sep))] ""
+   [:#side :.workspace :ul.buttons (-> :li hover (css-not :.sep))] "Workspace folder file and recent buttons"
    [:#side :.workspace (c-> (-> :li hover) :div :p)] ""
    [:#side :.workspace :li (-> :p hover)] ""
    [:#side :.workspace (c-> :.recent :div :ul)] ""
@@ -238,9 +238,9 @@
    [:#side :.workspace :.recent (-> :h2 hover)] ""
 
 
-   ; CONNECT ?
+   ; CONNECT MENU
    [:#side :.clients (c-> :.list :ul :li)] "Clients wrappers"
-   [:#side :.clients :h2] ""
+   [:#side :.clients :h2] "Type of clients"
    [:#side :.clients :td] ""
    [:#side :.clients (c-+ :td :td)] ""
    [:#side :.clients :.button] ""
@@ -249,11 +249,11 @@
    [:#side :.clients :.load-wrapper :.img] ""
    [:#side :.clients :.list :.active] ""
    [:#side :.clients :.list (c-+ :li :li)] ""
-   [:#side :.clients :.list :.active :*] ""
+   [:#side :.clients :.list :.active :*] "Every child in the box of the active client"
 
    [:#side :.clients :.list :.active :.button] ""
    [:#side :.clients :.list :.active (-> :.button hover)] ""
-   [:#side :.clients :.connector :li] ""
+   [:#side :.clients :.connector :li] "Box containing each client avaiable."
    [:#side :.clients :.connector (-> :li first-child)] ""
    [:#side :.clients :.connector (-> :li last-child)] ""
 
@@ -262,10 +262,10 @@
    [:#side :.clients :.connector (-> :li hover) :h2] ""
    [:#side :.clients :.connector (-> :li hover)] ""
    [:#side :.clients :.connector (c-+ (-> :li hover) :li)] ""
-   [:#side :.clients (-> :.toggle hover)] ""
+   [:#side :.clients (-> :.toggle hover)] "The Add Connection button."
 
 
-   :#statusbar ""
+   :#statusbar "Minibuffer"
    [:#statusbar :.console-toggle] ""
    [:#statusbar (-> :.console-toggle hover)] ""
    [:#statusbar :.console-toggle.dirty] ""
@@ -275,7 +275,7 @@
    [:.load-wrapper :.img] ""
 
 
-   [:#find-bar :input] ""
+   [:#find-bar :input] "Input for the text search."
    [:#find-bar "::-webkit-input-placeholder"] ""
 
    [:#keybinding :ul.keys :li] ""

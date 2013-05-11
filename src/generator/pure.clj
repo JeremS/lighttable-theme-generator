@@ -70,6 +70,10 @@
   (list
    :border [:1px :dashed default-text-color]))
 
+(def inline-error-style
+  (list
+   :border [:1px :dashed :red]))
+
 ;; Grouping of similar selectors.
 (def first-class-containers
   #{:body :.CodeMirror})
@@ -77,14 +81,21 @@
 (def buttons
   #{[:#sidebar :li]
     [:#side :.clients :.button]
+    [:#side :.clients :.connector :li]
+    [:#side :.workspace :ul.buttons (-> :li (css-not :.sep))]
+    [:#side :.clients :.toggle]
     [:#multi :.list :li]
     [:.popup :.button]
-    [:#side :.clients :.connector :li]})
+    [:#instarepl :.livetoggler.off]
+    [:#version-info :.button]
+    })
 
 (def selected
   #{[:#sidebar :.current]
     [:#multi :.list :.active]
-    [:#side :.clients :.list :.active]})
+    [:#side :.clients :.list :.active]
+    [:#instarepl :.livetoggler]
+    [:.popup :.button.active]})
 
 (def inputs
   #{[:#side #{:.navigate :.command} :input]
@@ -94,21 +105,25 @@
   #{[:.filter-list #{:.selected (-> :li hover)}]})
 
 
-;; TODO: add search and minibuffer
 (def boxes
   #{[:.inline-result :.truncated]
     [:.inline-result.open :.full]
     [:#side :.clients (c-> :.list :ul :li)]
     [:#side :.clients :.connector :li]
     :#statusbar
-    :.cm-searching})
+    :.console
+    [:#instarepl :.usage]})
+
+(def inline-errors
+  #{[:.inline-exception :pre]
+    [:#instarepl :.usage.exception]})
 
 ;; Style
 (defrules skin-style
+  \newline
   [first-class-containers
    :background-color default-bg-color
    :color default-text-color]
-  \newline
   \newline
 
   (css-comment "button style")
@@ -138,8 +153,9 @@
   (css-comment "boxes")
   [boxes box-style]
 
-  [[:.inline-exception :pre]
-   :border [:2px :dotted :red]]
+  \newline
+  (css-comment "inline errors")
+  [inline-errors inline-error-style]
 
   \newline
   (css-comment "Underlining propositions")
