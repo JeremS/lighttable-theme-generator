@@ -1,9 +1,8 @@
 (ns generator.pure
-  (:require
-   [cljss.units.colors :as colors :refer (rgba hsla)])
+  (:require [cljss.units.colors :as colors :refer (rgba hsla)])
   (:use
    [generator.core :only (make-theme-css-class write-skin write-theme)]
-   [generator.reset :only (default-skin make-reset-rules)]
+   [generator.reset :only (make-reset-rules)]
    cljss.core))
 
 ; little black and white theme.
@@ -26,32 +25,38 @@
 ;; Mixins
 
 (defn default-transition [& properties]
-  (mapcat #(list :transition [% :0.3s :ease]) properties))
+  (mapcat #(list :transition [% :0.2s :ease]) properties))
 
 
-(defrules button-style
-  [&
+(def button-style
+  (list
+   ;:background-color default-bg-color
    :border [:1px :dotted default-border-color]
    :border-radius :3px
-   :text-shadow [0 0 :1px (colors/lighten outer-shadow-color 30)]
+   :text-shadow [0 0 :3px outer-shadow-color]
+   :color default-bg-color
    (default-transition :all)
 
-   [:h2 :text-shadow :none]
 
    [(-> & hover)
+    :color default-text-color
     :box-shadow [0 0 :5px outer-shadow-color]
     :text-shadow :none
-    :border [:1px :dotted  default-bg-color]]])
+    :border [:1px :dotted  default-bg-color]]))
 
 (def selected-style
   (list
-   (default-transition :box-shadow)
+   :background-color default-bg-color
+   (default-transition :all)
    :text-shadow :none
+   :color default-text-color
    :box-shadow [:inset 0 0 :5px inner-shadow-color]
    :border [:1px :solid inner-shadow-color]))
 
 (def input-style
-  (list :border [:1px :dashed default-border-color]))
+  (list :border [:1px :dashed default-border-color]
+        :background-color default-bg-color
+        :color default-text-color))
 
 
 (defrules filter-list-style
@@ -68,7 +73,8 @@
 
 (def box-style
   (list
-   :border [:1px :dashed default-text-color]))
+   :border [:1px :dashed default-text-color]
+   :border-radius :10px))
 
 (def inline-error-style
   (list
@@ -88,31 +94,53 @@
     [:.popup :.button]
     [:#instarepl :.livetoggler.off]
     [:#version-info :.button]
-    })
+    [:#keybinding :button]
+    [:#statusbar :.console-toggle]
+    [:#browser :button]})
 
 (def selected
   #{[:#sidebar :.current]
     [:#multi :.list :.active]
     [:#side :.clients :.list :.active]
     [:#instarepl :.livetoggler]
-    [:.popup :.button.active]})
+    [:.popup :.button.active]
+    [:#statusbar :.console-toggle.dirty]})
 
 (def inputs
   #{[:#side #{:.navigate :.command} :input]
-    [:#find-bar :input]})
+    [:#find-bar :input]
+    [:#keybinding :.binder :input]
+    [:#browser :input]})
 
-(def side-elements
-  #{[:.filter-list #{:.selected (-> :li hover)}]})
+(def inline-option-style
+  (list
+   :content (css-str " <")
+   :float :right
+   :background-color default-bg-color))
+
+(def inline-selectors
+  #{[:.CodeMirror-hints :ul]
+    [:#keybinding :.filter-list :ul]})
+
+(def selection-options
+  #{[:.filter-list #{:.selected (-> :li hover)}]
+    [:#keybinding :.filter-list :ul]})
 
 
 (def boxes
-  #{[:.inline-result :.truncated]
+  #{:#intro
+    [:.inline-result :.truncated]
     [:.inline-result.open :.full]
     [:#side :.clients (c-> :.list :ul :li)]
     [:#side :.clients :.connector :li]
     :#statusbar
-    :.console
-    [:#instarepl :.usage]})
+    :#bottombar
+    [:#instarepl :.usage]
+    [:#keybinding :.binder]
+    [:#keybinding :.all-mappings]
+    [:#keybinding :.all-mappings :tr]
+    [:#keybinding :ul.keys :li]
+    [:.console :> :li]})
 
 (def inline-errors
   #{[:.inline-exception :pre]
@@ -139,9 +167,13 @@
 
   \newline
   (css-comment "Side lists")
-  [side-elements filter-list-style]
+  [selection-options filter-list-style]
   [[:#side :.workspace :li (-> :p hover after)]
    workspace-selection-style]
+
+  \newline
+  (css-comment "Completions ")
+  [inline-selectors inline-option-style]
 
   \newline
   (css-comment "clients")
@@ -167,6 +199,11 @@
    [:.list :margin-left :1px]
    [[:.tabset :+ :.tabset]
     :border-left [:1px :dotted default-text-color]]]
+
+  [:#bottombar :margin-bottom :-2px]
+  [[:.console :> :li] :margin-bottom :2px]
+
+  [:intro :background-color (-> default-bg-color colors/c-complement (colors/lighten 30))]
 
   \newline
   (css-comment "tests"))

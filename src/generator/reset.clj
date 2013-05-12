@@ -19,15 +19,26 @@
   "Generates rules that reset the skin with the given
   colors."
   [bg-color text-color]
-  (let [reset-colors (make-reset-colors-mixin bg-color text-color)]
+  (let [reset-colors (make-reset-colors-mixin bg-color text-color)
+        light-text-color (colors/lighten text-color 50)
+        darken-bg-color (colors/darken bg-color 10)]
     (rules
      [:body reset-colors]
      [:a :text-decoration :none]
      [:#intro transparent-bg]
 
+     ["::-webkit-input-placeholder"
+      :color light-text-color]
+     ["::-webkit-scrollbar" transparent-bg]
+     ["::-webkit-scrollbar-track" transparent-bg]
+     ["::-webkit-scrollbar-thumb"
+      :background (alpha darken-bg-color 0.5)
+      :border [:1px :dotted light-text-color]]
+     ["::-webkit-scrollbar-corner" transparent-bg]
+
      [:.popup
       :background-color (alpha bg-color 0.3)
-      [(c-> & :div :div) reset-colors]]
+      [[& :> :div :> :div] reset-colors]]
 
      [:#multi
       [:.list
@@ -51,6 +62,7 @@
         :height :20px
         :background (str "url(" (css-str "../../img/connectingloader.gif") ")")]]
 
+     [[:#find-bar :input] reset-colors]
      [[:#statusbar :.console-toggle]
        :cursor :default
        :width :20px
@@ -62,13 +74,16 @@
        :background (str "url(" (css-str "../../img/loaderdark.gif") ")")]
 
 
+     [[:#keybinding :.filter-list :ul] reset-colors]
+
+
      [[:.cm-s-default :span.CodeMirror-matchingbracket]
        :box-sizing :border-box
        :font-weight :normal]
 
      [:.CodeMirror
        [:div.CodeMirror-cursor
-         :border-left [:1px :solid :black]]
+         :border-left [:1px :solid text-color]]
 
        [:div.CodeMirror-secondarycursor
          :border-left [:1px :solid :silver]]
@@ -105,16 +120,13 @@
        reset-colors
 
        [:input :display :none]
-       [[:ul :li]
-        :margin 0
-        :padding [0 :4px]
-        :max-width :19em
-        :overflow :hidden
-        :white-space :pre
-        :cursor :pointer]
-
-       [(-> :.selected after)
-         :content (css-str "  <")
-         :color :grey
-         :float :right]])))
+       [:ul
+        reset-colors
+        [:li
+         :margin 0
+         :padding [0 :4px]
+         :max-width :19em
+         :overflow :hidden
+         :white-space :pre
+         :cursor :pointer]]])))
 

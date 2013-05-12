@@ -148,7 +148,7 @@
    [:#multi (-> :.fullscreen hover)] "???"
 
    ; CONSOLE
-   [:#bottombar :.content] "Console"
+   [:#bottombar :.content] "Content of the console"
    (c-> :.console :li) "???"
    [:.console :td]     "???"
    (c-> :.console (c-+ :li :li)) "???"
@@ -266,9 +266,9 @@
 
 
    :#statusbar "Minibuffer"
-   [:#statusbar :.console-toggle] ""
+   [:#statusbar :.console-toggle] "Button to show/hide the contole."
    [:#statusbar (-> :.console-toggle hover)] ""
-   [:#statusbar :.console-toggle.dirty] ""
+   [:#statusbar :.console-toggle.dirty] "when stuff appeared in the console while masked."
    [:#statusbar :.log :.error] ""
    [:#statusbar :.log :.tip] ""
 
@@ -278,13 +278,17 @@
    [:#find-bar :input] "Input for the text search."
    [:#find-bar "::-webkit-input-placeholder"] ""
 
-   [:#keybinding :ul.keys :li] ""
-   [:#keybinding :input] ""
-   [:#keybinding :.all-mappings] ""
+   :#keybinding "The key bindings pane."
+   [:#keybinding :.binder] "Pane containing the inputs."
+   [:#keybinding :ul.keys :li] "Boxes containing the keys for a binding"
+   [:#keybinding :input] "inputs in the pane"
+   [:#keybinding :.binder :input] "inputs in the left part"
+   [:#keybinding :.all-mappings] "Pane displaying the bindings already in place"
    [:#keybinding :.filter-list :ul] ""
    [:#keybinding :.all-mappings (c-> :td :ul (-> :li hover))] ""
    [:#keybinding :.all-mappings (-> :li hover) :.remove] ""
    [:#keybinding :.all-mappings :li (-> :.remove hover)] ""
+   [:#keybinding :button] ""
 
    [:#browser :input] ""
    [:#browser :button] ""
