@@ -4,7 +4,7 @@
   (:use cljss.core
         [generator.reset :only (make-reset-rules)]
         [generator.core :only (make-theme-css-class make-theme-path
-                                          write-skin write-theme)]))
+                               install-skin install-theme)]))
 
 ; little black and white theme.
 
@@ -228,7 +228,5 @@
        slurp
        (string/replace ".cm-s-codemirror" (make-theme-css-class theme-name))))
 
-(make-theme-css-class theme-name)
-
-(write-theme theme-name theme)
+;(write-theme theme-name theme)
 

@@ -42,12 +42,12 @@
 (defn print-css [theme]
   (compile-css theme println))
 
-(defn write-theme [theme-name theme]
+(defn install-theme [theme-name theme]
   (let [theme-name (str theme-name "-theme")
         theme-path (make-theme-path theme-name)]
       (compile-css theme (partial spit theme-path))))
 
-(defn write-skin [skin-name skin]
+(defn install-skin [skin-name skin]
   (let [skin-path (make-skin-path skin-name)]
       (compile-css skin (partial spit skin-path))))
 
