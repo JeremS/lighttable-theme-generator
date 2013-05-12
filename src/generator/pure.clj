@@ -30,13 +30,12 @@
 
 (def button-style
   (list
-   ;:background-color default-bg-color
+   :background-color default-bg-color
    :border [:1px :dotted default-border-color]
    :border-radius :3px
    :text-shadow [0 0 :3px outer-shadow-color]
    :color default-bg-color
    (default-transition :all)
-
 
    [(-> & hover)
     :color default-text-color
@@ -156,6 +155,8 @@
 
   (css-comment "button style")
   [buttons button-style]
+  [[:#side :.clients :.connector :li :h2]
+   :color default-text-color]
 
   \newline
   (css-comment "selectables style")
@@ -203,7 +204,7 @@
   [:#bottombar :margin-bottom :-2px]
   [[:.console :> :li] :margin-bottom :2px]
 
-  [:intro :background-color (-> default-bg-color colors/c-complement (colors/lighten 30))]
+  [:intro :background-color (-> default-bg-color colors/inverse (colors/lighten 50))]
 
   \newline
   (css-comment "tests"))
