@@ -3,7 +3,7 @@
    [cljss.units.colors :as colors :refer (rgba hsla)])
   (:use
    [generator.core :only (make-theme-css-class write-skin write-theme)]
-   [generator.reset :only (default-skin reset-colors)]
+   [generator.reset :only (default-skin make-reset-rules)]
    cljss.core))
 
 ; little black and white theme.
@@ -173,7 +173,7 @@
 
 (def skin
   (group-rules
-   default-skin
+   (make-reset-rules default-bg-color default-text-color)
    skin-style))
 
 (defrules default-theme
