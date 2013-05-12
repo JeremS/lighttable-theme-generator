@@ -1,9 +1,10 @@
 (ns generator.pure
-  (:require [cljss.units.colors :as colors :refer (rgba hsla)])
-  (:use
-   [generator.core :only (make-theme-css-class write-skin write-theme)]
-   [generator.reset :only (make-reset-rules)]
-   cljss.core))
+  (:require [cljss.units.colors :as colors :refer (rgba hsla)]
+            [clojure.string :as string])
+  (:use cljss.core
+        [generator.reset :only (make-reset-rules)]
+        [generator.core :only (make-theme-css-class make-theme-path
+                                          write-skin write-theme)]))
 
 ; little black and white theme.
 
@@ -32,7 +33,7 @@
   (list
    :background-color default-bg-color
    :border [:1px :dotted default-border-color]
-   :border-radius :3px
+   :border-radius :10px
    :text-shadow [0 0 :3px outer-shadow-color]
    :color default-bg-color
    (default-transition :all)
@@ -130,16 +131,21 @@
   #{:#intro
     [:.inline-result :.truncated]
     [:.inline-result.open :.full]
+
     [:#side :.clients (c-> :.list :ul :li)]
     [:#side :.clients :.connector :li]
+
     :#statusbar
+
     :#bottombar
+
     [:#instarepl :.usage]
     [:#keybinding :.binder]
     [:#keybinding :.all-mappings]
     [:#keybinding :.all-mappings :tr]
     [:#keybinding :ul.keys :li]
-    [:.console :> :li]})
+
+    [:.console :> :td]})
 
 (def inline-errors
   #{[:.inline-exception :pre]
@@ -147,76 +153,82 @@
 
 ;; Style
 (defrules skin-style
-  \newline
   [first-class-containers
    :background-color default-bg-color
    :color default-text-color]
-  \newline
 
   (css-comment "button style")
   [buttons button-style]
   [[:#side :.clients :.connector :li :h2]
    :color default-text-color]
 
-  \newline
   (css-comment "selectables style")
   [selected selected-style]
 
-  \newline
   (css-comment "input style")
   [inputs input-style]
 
-  \newline
   (css-comment "Side lists")
   [selection-options filter-list-style]
   [[:#side :.workspace :li (-> :p hover after)]
    workspace-selection-style]
 
-  \newline
   (css-comment "Completions ")
   [inline-selectors inline-option-style]
 
-  \newline
   (css-comment "clients")
   [#{[:#side :.clients (c-> :.list :ul (c-+ :li :li))]
      [:#side :.clients :.connector :li]}
    :margin-top :3px]
 
-  \newline
   (css-comment "boxes")
   [boxes box-style]
 
-  \newline
   (css-comment "inline errors")
   [inline-errors inline-error-style]
 
-  \newline
   (css-comment "Underlining propositions")
   [[:.filter-list :em] :border-bottom [:1px :solid default-text-color]]
 
-  \newline
-  (css-comment "misc")
+  (css-comment "Positionning")
+  [[:#sidebar :li]
+   :margin-right :5px
+
+   [(-> & last-child)
+    :margin-right :30px]] ;; todo -> move dow the buttons
+
   [:#multi
-   [:.list :margin-left :1px]
+   [:.list :margin-left :10px
+    [:li :margin-left :5px]]
    [[:.tabset :+ :.tabset]
     :border-left [:1px :dotted default-text-color]]]
 
   [:#bottombar :margin-bottom :-2px]
   [[:.console :> :li] :margin-bottom :2px]
 
-  [:intro :background-color (-> default-bg-color colors/inverse (colors/lighten 50))]
+  [[:#side :.content]
+   :margin [0 :10px]
+   :height :99.6%]
 
-  \newline
-  (css-comment "tests"))
+  (css-comment "misc")
+  [:intro :background-color (-> default-bg-color colors/inverse (colors/lighten 50))])
 
 (def skin
   (group-rules
    (make-reset-rules default-bg-color default-text-color)
    skin-style))
 
-(defrules default-theme
-  (css-comment "Right now use the code miror default theme."))
+;(write-skin theme-name skin)
 
-; eval to install in the light table folder.
-;(write-theme theme-name default-theme)
-(write-skin theme-name skin)
+
+(defrules theme
+  (css-comment "Right now use the code miror default theme.")
+
+  (-> (make-theme-path "codemirror")
+       slurp
+       (string/replace ".cm-s-codemirror" (make-theme-css-class theme-name))))
+
+(make-theme-css-class theme-name)
+
+(write-theme theme-name theme)
+

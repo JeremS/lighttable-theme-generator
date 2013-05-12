@@ -13,7 +13,7 @@
   "Construct the css class name used by LT when
   a theme is loaded."
   [theme-name]
-  (str ".cm-s-" theme-name))
+  (str ".cm-s-" theme-name "-theme"))
 
 (defn make-path [theme-name d]
   (str home-path file-separator
@@ -43,10 +43,12 @@
   (compile-css theme println))
 
 (defn write-theme [theme-name theme]
-  (let [theme-path (make-theme-path theme-name)]
+  (let [theme-name (str theme-name "-theme")
+        theme-path (make-theme-path theme-name)]
       (compile-css theme (partial spit theme-path))))
 
 (defn write-skin [skin-name skin]
   (let [skin-path (make-skin-path skin-name)]
       (compile-css skin (partial spit skin-path))))
+
 
