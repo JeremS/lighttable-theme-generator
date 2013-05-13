@@ -5,7 +5,7 @@
         generator.common
         [generator.reset :only (make-reset-rules)]
         [generator.core :only (make-theme-css-class make-theme-path
-                               install-skin install-theme
+                               install-skin install-theme print-css
                                file-separator)]))
 
 ; little black and white theme.
@@ -152,14 +152,16 @@
   (css-comment "misc")
   [:intro :background-color (-> default-bg-color colors/inverse (colors/lighten 50))])
 
-(def skin
+(defrules skin
+  (css-comment "Generated from ../src/generator/pure")
   (group-rules
    (make-reset-rules default-bg-color default-text-color)
    skin-style))
 
 
 (defrules theme
-  (css-comment "Right now use the code miror default theme.")
+  (css-comment "Generated from ../src/generator/pure")
+  (css-comment "Right now uses the code miror default theme.")
 
   (-> (make-theme-path "codemirror")
        slurp
@@ -184,7 +186,9 @@
                         skin-name ".css" )]
       (spit skin-path (apply css skin))))
 
-;(write-theme theme-name theme)
-;(write-skin theme-name skin)
+
+
+(write-theme theme-name theme)
+(write-skin theme-name skin)
 
 

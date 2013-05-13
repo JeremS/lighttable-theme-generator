@@ -1,3 +1,4 @@
+/* Generated from ../src/generator/pure */
 body {
   color: rgba(0,0,0,1.0);
   background: rgba(255,255,255,1.0);
@@ -126,7 +127,6 @@ a {
       padding: 0 4px;
       margin: 0;
     }
-.CodeMirror, 
 body {
   color: rgba(0,0,0,1.0);
   background-color: rgba(255,255,255,1.0);
