@@ -152,17 +152,17 @@ body {
   background-color: rgba(255,255,255,1.0);
 }
   #version-info .button:hover, 
-#side .workspace ul.buttons li:not(.sep):hover, 
-#keybinding button:hover, 
-#statusbar .console-toggle:hover, 
-#side .clients .connector li:hover, 
-#multi .list li:hover, 
-#side .clients .toggle:hover, 
-.popup .button:hover, 
-#instarepl .livetoggler.off:hover, 
-#side .clients .button:hover, 
-#browser button:hover, 
-#sidebar li:hover {
+  #side .workspace ul.buttons li:not(.sep):hover, 
+  #keybinding button:hover, 
+  #statusbar .console-toggle:hover, 
+  #side .clients .connector li:hover, 
+  #multi .list li:hover, 
+  #side .clients .toggle:hover, 
+  .popup .button:hover, 
+  #instarepl .livetoggler.off:hover, 
+  #side .clients .button:hover, 
+  #browser button:hover, 
+  #sidebar li:hover {
     border: 1px dotted rgba(255,255,255,1.0);
     text-shadow: none;
     box-shadow: 0 0 5px rgba(0,0,0,1.0);
@@ -198,8 +198,8 @@ body {
 }
 /* Side lists */
   #keybinding .filter-list ul::after, 
-.filter-list .selected::after, 
-.filter-list li:hover::after {
+  .filter-list .selected::after, 
+  .filter-list li:hover::after {
     margin-top: 1px;
     right: 5px;
     position: absolute;
