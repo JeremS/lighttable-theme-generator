@@ -165,9 +165,9 @@
        slurp
        (string/replace ".cm-s-codemirror" (make-theme-css-class theme-name))))
 
-; Write the css directly n LT folders.
-(install-theme theme-name theme)
-(install-skin theme-name skin)
+; Write the css directly in LT folders.
+;(install-theme theme-name theme)
+;(install-skin theme-name skin)
 
 
 ;; write the pretty printed themes in the css folder of the project
