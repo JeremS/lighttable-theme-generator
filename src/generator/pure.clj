@@ -153,14 +153,14 @@
   [:intro :background-color (-> default-bg-color colors/inverse (colors/lighten 50))])
 
 (defrules skin
-  (css-comment "Generated from ../src/generator/pure")
+  (css-comment "Generated from ../src/generator/pure.clj")
   (group-rules
    (make-reset-rules default-bg-color default-text-color)
    skin-style))
 
 
 (defrules theme
-  (css-comment "Generated from ../src/generator/pure")
+  (css-comment "Generated from ../src/generator/pure.clj")
   (css-comment "Right now uses the code miror default theme.")
 
   (-> (make-theme-path "codemirror")
