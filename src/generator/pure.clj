@@ -4,7 +4,8 @@
   (:use cljss.core
         [generator.reset :only (make-reset-rules)]
         [generator.core :only (make-theme-css-class make-theme-path
-                               install-skin install-theme)]))
+                               install-skin install-theme
+                               file-separator)]))
 
 ; little black and white theme.
 
@@ -145,7 +146,7 @@
     [:#keybinding :.all-mappings :tr]
     [:#keybinding :ul.keys :li]
 
-    [:.console :> :td]})
+    [:.console :> :li]})
 
 (def inline-errors
   #{[:.inline-exception :pre]
@@ -160,7 +161,8 @@
   (css-comment "button style")
   [buttons button-style]
   [[:#side :.clients :.connector :li :h2]
-   :color default-text-color]
+   :color default-text-color
+   :text-shadow :none]
 
   (css-comment "selectables style")
   [selected selected-style]
@@ -218,8 +220,6 @@
    (make-reset-rules default-bg-color default-text-color)
    skin-style))
 
-;(write-skin theme-name skin)
-
 
 (defrules theme
   (css-comment "Right now use the code miror default theme.")
@@ -228,5 +228,26 @@
        slurp
        (string/replace ".cm-s-codemirror" (make-theme-css-class theme-name))))
 
-;(write-theme theme-name theme)
+; Write the css directly n LT folders.
+;(install-theme theme-name theme)
+;(install-skin theme-name skin)
+
+
+;; write the pretty printed themes in the css folder of the project
+(defn write-theme [theme-name theme]
+  (let [theme-name (str theme-name "-theme")
+        theme-path (str (System/getProperty "user.dir") file-separator
+                        "css" file-separator
+                        theme-name ".css" )]
+      (spit theme-path (apply css theme))))
+
+(defn write-skin [skin-name skin]
+  (let [skin-path (str (System/getProperty "user.dir") file-separator
+                       "css" file-separator
+                        skin-name ".css" )]
+      (spit skin-path (apply css skin))))
+
+(write-theme theme-name theme)
+(write-skin theme-name skin)
+
 

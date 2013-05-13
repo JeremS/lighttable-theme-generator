@@ -1,0 +1,279 @@
+body {
+  color: rgba(0,0,0,1.0);
+  background: rgba(255,255,255,1.0);
+}
+a {
+  text-decoration: none;
+}
+#intro {
+  background: transparent;
+}
+::-webkit-input-placeholder {
+  color: hsla(0.0,0.0%,50.0%,1.0);
+}
+::-webkit-scrollbar {
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border: 1px dotted hsla(0.0,0.0%,50.0%,1.0);
+  background: hsla(0.0,0.0%,90.0%,0.5);
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+.popup {
+  background-color: rgba(255,255,255,0.3);
+}
+  .popup > div > div {
+    color: rgba(0,0,0,1.0);
+    background: rgba(255,255,255,1.0);
+  }
+  #multi .list {
+    background: transparent;
+  }
+    #multi .list li {
+      color: rgba(0,0,0,1.0);
+      background: rgba(255,255,255,1.0);
+      height: 29px;
+      box-sizing: border-box;
+    }
+    #multi .list .dirty::after {
+      content: "*";
+    }
+  #multi .dirty.ui-sortable-placeholder::after {
+    content: "" !important;
+  }
+  #side .workspace .recent > div > ul {
+    margin-top: 15px;
+  }
+  #side .clients .load-wrapper .img {
+    background: url("../../img/connectingloader.gif");
+    height: 20px;
+    width: 20px;
+  }
+#find-bar input {
+  color: rgba(0,0,0,1.0);
+  background: rgba(255,255,255,1.0);
+}
+#statusbar .console-toggle {
+  margin-left: 0px;
+  text-align: center;
+  display: inline-block;
+  width: 20px;
+  cursor: default;
+}
+.load-wrapper .img {
+  background: url("../../img/loaderdark.gif");
+}
+#keybinding .filter-list ul {
+  color: rgba(0,0,0,1.0);
+  background: rgba(255,255,255,1.0);
+}
+.cm-s-default span.CodeMirror-matchingbracket {
+  font-weight: normal;
+  box-sizing: border-box;
+}
+  .CodeMirror div.CodeMirror-cursor {
+    border-left: 1px solid rgba(0,0,0,1.0);
+  }
+  .CodeMirror div.CodeMirror-secondarycursor {
+    border-left: 1px solid silver;
+  }
+  .CodeMirror span.CodeMirror-matchingbracket {
+    font-weight: normal;
+    border-bottom: 1px solid black;
+    background: transparent;
+    box-sizing: border-box;
+  }
+  .CodeMirror span.CodeMirror-nonmatchingbracket {
+    color: red;
+    background: transparent;
+    box-sizing: border-box;
+  }
+.CodeMirror.cm-keymap-fat-cursor div.CodeMirror-cursor {
+  border: none !important;
+  width: auto;
+}
+.CodeMirror-hints {
+  margin: 0;
+  position: absolute;
+  background: rgba(255,255,255,1.0);
+  list-style: none;
+  padding: 2px;
+  color: rgba(0,0,0,1.0);
+  max-height: 20em;
+  z-index: 1000000000000000;
+  font-size: 90%;
+  overflow-y: auto;
+  overflow: hidden;
+  font-family: inherit;
+}
+  .CodeMirror-hints input {
+    display: none;
+  }
+  .CodeMirror-hints ul {
+    color: rgba(0,0,0,1.0);
+    background: rgba(255,255,255,1.0);
+  }
+    .CodeMirror-hints ul li {
+      cursor: pointer;
+      white-space: pre;
+      overflow: hidden;
+      max-width: 19em;
+      padding: 0 4px;
+      margin: 0;
+    }
+.CodeMirror, 
+body {
+  color: rgba(0,0,0,1.0);
+  background-color: rgba(255,255,255,1.0);
+}
+/* button style */
+#statusbar .console-toggle, 
+#keybinding button, 
+#side .workspace ul.buttons li:not(.sep), 
+#version-info .button, 
+#side .clients .connector li, 
+#sidebar li, 
+#browser button, 
+#side .clients .button, 
+#instarepl .livetoggler.off, 
+#side .clients .toggle, 
+.popup .button, 
+#multi .list li {
+  transition: all 0.2s ease;
+  color: rgba(255,255,255,1.0);
+  text-shadow: 0 0 3px rgba(0,0,0,1.0);
+  border-radius: 10px;
+  border: 1px dotted rgba(0,0,0,1.0);
+  background-color: rgba(255,255,255,1.0);
+}
+  #version-info .button:hover, 
+#side .workspace ul.buttons li:not(.sep):hover, 
+#keybinding button:hover, 
+#statusbar .console-toggle:hover, 
+#side .clients .connector li:hover, 
+#multi .list li:hover, 
+#side .clients .toggle:hover, 
+.popup .button:hover, 
+#instarepl .livetoggler.off:hover, 
+#side .clients .button:hover, 
+#browser button:hover, 
+#sidebar li:hover {
+    border: 1px dotted rgba(255,255,255,1.0);
+    text-shadow: none;
+    box-shadow: 0 0 5px rgba(0,0,0,1.0);
+    color: rgba(0,0,0,1.0);
+  }
+#side .clients .connector li h2 {
+  text-shadow: none;
+  color: rgba(0,0,0,1.0);
+}
+/* selectables style */
+.popup .button.active, 
+#multi .list .active, 
+#side .clients .list .active, 
+#instarepl .livetoggler, 
+#sidebar .current, 
+#statusbar .console-toggle.dirty {
+  border: 1px solid hsla(0.0,0.0%,30.0%,1.0);
+  box-shadow: inset 0 0 5px hsla(0.0,0.0%,30.0%,1.0);
+  color: rgba(0,0,0,1.0);
+  text-shadow: none;
+  transition: all 0.2s ease;
+  background-color: rgba(255,255,255,1.0);
+}
+/* input style */
+#side .navigate input, 
+#keybinding .binder input, 
+#side .command input, 
+#browser input, 
+#find-bar input {
+  color: rgba(0,0,0,1.0);
+  background-color: rgba(255,255,255,1.0);
+  border: 1px dashed rgba(0,0,0,1.0);
+}
+/* Side lists */
+  #keybinding .filter-list ul::after, 
+.filter-list .selected::after, 
+.filter-list li:hover::after {
+    margin-top: 1px;
+    right: 5px;
+    position: absolute;
+    content: ">";
+  }
+#side .workspace li p:hover::after {
+  float: right;
+  content: "<";
+}
+/* Completions  */
+.CodeMirror-hints ul, 
+#keybinding .filter-list ul {
+  background-color: rgba(255,255,255,1.0);
+  float: right;
+  content: " <";
+}
+/* clients */
+#side .clients .list > ul > li + li, 
+#side .clients .connector li {
+  margin-top: 3px;
+}
+/* boxes */
+.console > li, 
+#intro, 
+#side .clients .list > ul > li, 
+#bottombar, 
+.inline-result .truncated, 
+#keybinding .all-mappings, 
+#keybinding .binder, 
+#keybinding ul.keys li, 
+#side .clients .connector li, 
+#keybinding .all-mappings tr, 
+.inline-result.open .full, 
+#statusbar, 
+#instarepl .usage {
+  border-radius: 10px;
+  border: 1px dashed rgba(0,0,0,1.0);
+}
+/* inline errors */
+.inline-exception pre, 
+#instarepl .usage.exception {
+  border: 1px dashed red;
+}
+/* Underlining propositions */
+.filter-list em {
+  border-bottom: 1px solid rgba(0,0,0,1.0);
+}
+/* Positionning */
+#sidebar li {
+  margin-right: 5px;
+}
+  #sidebar li:last-child {
+    margin-right: 30px;
+  }
+  #multi .list {
+    margin-left: 10px;
+  }
+    #multi .list li {
+      margin-left: 5px;
+    }
+  #multi .tabset + .tabset {
+    border-left: 1px dotted rgba(0,0,0,1.0);
+  }
+#bottombar {
+  margin-bottom: -2px;
+}
+.console > li {
+  margin-bottom: 2px;
+}
+#side .content {
+  height: 99.6%;
+  margin: 0 10px;
+}
+/* misc */
+intro {
+  background-color: hsla(0.0,0.0%,50.0%,1.0);
+}

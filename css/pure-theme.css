@@ -1,0 +1,26 @@
+/* Right now use the code miror default theme. */
+.cm-s-pure-theme { background: #fff; }
+.cm-s-pure-theme span.cm-keyword {color: #708;}
+.cm-s-pure-theme span.cm-atom {color: #219;}
+.cm-s-pure-theme span.cm-number {color: #164;}
+.cm-s-pure-theme span.cm-def {color: #00f;}
+.cm-s-pure-theme span.cm-variable {color: black;}
+.cm-s-pure-theme span.cm-variable-2 {color: #05a;}
+.cm-s-pure-theme span.cm-variable-3 {color: #085;}
+.cm-s-pure-theme span.cm-property {color: black;}
+.cm-s-pure-theme span.cm-operator {color: black;}
+.cm-s-pure-theme span.cm-comment {color: #a50;}
+.cm-s-pure-theme span.cm-string {color: #a11;}
+.cm-s-pure-theme span.cm-string-2 {color: #f50;}
+.cm-s-pure-theme span.cm-meta {color: #555;}
+.cm-s-pure-theme span.cm-error {color: #f00;}
+.cm-s-pure-theme span.cm-qualifier {color: #555;}
+.cm-s-pure-theme span.cm-builtin {color: #30a;}
+.cm-s-pure-theme span.cm-bracket {color: #997;}
+.cm-s-pure-theme span.cm-tag {color: #170;}
+.cm-s-pure-theme span.cm-attribute {color: #00c;}
+.cm-s-pure-theme span.cm-header {color: blue;}
+.cm-s-pure-theme span.cm-quote {color: #090;}
+.cm-s-pure-theme span.cm-hr {color: #999;}
+.cm-s-pure-theme span.cm-link {color: #00c;}
+.cm-s-pure-theme span.cm-symbol {color: black; }
