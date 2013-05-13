@@ -31,29 +31,29 @@ a {
     color: rgba(0,0,0,1.0);
     background: rgba(255,255,255,1.0);
   }
-  #multi .list {
-    background: transparent;
+#multi .list {
+  background: transparent;
+}
+  #multi .list li {
+    color: rgba(0,0,0,1.0);
+    background: rgba(255,255,255,1.0);
+    height: 29px;
+    box-sizing: border-box;
   }
-    #multi .list li {
-      color: rgba(0,0,0,1.0);
-      background: rgba(255,255,255,1.0);
-      height: 29px;
-      box-sizing: border-box;
-    }
-    #multi .list .dirty::after {
-      content: "*";
-    }
-  #multi .dirty.ui-sortable-placeholder::after {
-    content: "" !important;
+  #multi .list .dirty::after {
+    content: "*";
   }
-  #side .workspace .recent > div > ul {
-    margin-top: 15px;
-  }
-  #side .clients .load-wrapper .img {
-    background: url("../../img/connectingloader.gif");
-    height: 20px;
-    width: 20px;
-  }
+#multi .dirty.ui-sortable-placeholder::after {
+  content: "" !important;
+}
+#side .workspace .recent > div > ul {
+  margin-top: 15px;
+}
+#side .clients .load-wrapper .img {
+  background: url("../../img/connectingloader.gif");
+  height: 20px;
+  width: 20px;
+}
 #find-bar input {
   color: rgba(0,0,0,1.0);
   background: rgba(255,255,255,1.0);
@@ -76,23 +76,23 @@ a {
   font-weight: normal;
   box-sizing: border-box;
 }
-  .CodeMirror div.CodeMirror-cursor {
-    border-left: 1px solid rgba(0,0,0,1.0);
-  }
-  .CodeMirror div.CodeMirror-secondarycursor {
-    border-left: 1px solid silver;
-  }
-  .CodeMirror span.CodeMirror-matchingbracket {
-    font-weight: normal;
-    border-bottom: 1px solid black;
-    background: transparent;
-    box-sizing: border-box;
-  }
-  .CodeMirror span.CodeMirror-nonmatchingbracket {
-    color: red;
-    background: transparent;
-    box-sizing: border-box;
-  }
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 1px solid rgba(0,0,0,1.0);
+}
+.CodeMirror div.CodeMirror-secondarycursor {
+  border-left: 1px solid silver;
+}
+.CodeMirror span.CodeMirror-matchingbracket {
+  font-weight: normal;
+  border-bottom: 1px solid black;
+  background: transparent;
+  box-sizing: border-box;
+}
+.CodeMirror span.CodeMirror-nonmatchingbracket {
+  color: red;
+  background: transparent;
+  box-sizing: border-box;
+}
 .CodeMirror.cm-keymap-fat-cursor div.CodeMirror-cursor {
   border: none !important;
   width: auto;
@@ -197,14 +197,14 @@ body {
   border: 1px dashed rgba(0,0,0,1.0);
 }
 /* Side lists */
-  #keybinding .filter-list ul::after, 
-  .filter-list .selected::after, 
-  .filter-list li:hover::after {
-    margin-top: 1px;
-    right: 5px;
-    position: absolute;
-    content: ">";
-  }
+#keybinding .filter-list ul::after, 
+.filter-list .selected::after, 
+.filter-list li:hover::after {
+  margin-top: 1px;
+  right: 5px;
+  position: absolute;
+  content: ">";
+}
 #side .workspace li p:hover::after {
   float: right;
   content: "<";
@@ -254,15 +254,15 @@ body {
   #sidebar li:last-child {
     margin-right: 30px;
   }
-  #multi .list {
-    margin-left: 10px;
+#multi .list {
+  margin-left: 10px;
+}
+  #multi .list li {
+    margin-left: 5px;
   }
-    #multi .list li {
-      margin-left: 5px;
-    }
-  #multi .tabset + .tabset {
-    border-left: 1px dotted rgba(0,0,0,1.0);
-  }
+#multi .tabset + .tabset {
+  border-left: 1px dotted rgba(0,0,0,1.0);
+}
 #bottombar {
   margin-bottom: -2px;
 }
