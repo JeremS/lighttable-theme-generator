@@ -2,6 +2,7 @@
   (:require [cljss.units.colors :as colors :refer (rgba hsla)]
             [clojure.string :as string])
   (:use cljss.core
+        generator.common
         [generator.reset :only (make-reset-rules)]
         [generator.core :only (make-theme-css-class make-theme-path
                                install-skin install-theme
@@ -77,84 +78,20 @@
    :border [:1px :dashed default-text-color]
    :border-radius :10px))
 
-(def inline-error-style
-  (list
-   :border [:1px :dashed :red]))
-
-;; Grouping of similar selectors.
-(def first-class-containers
-  #{:body :.CodeMirror})
-
-(def buttons
-  #{[:#sidebar :li]
-    [:#side :.clients :.button]
-    [:#side :.clients :.connector :li]
-    [:#side :.workspace :ul.buttons (-> :li (css-not :.sep))]
-    [:#side :.clients :.toggle]
-    [:#multi :.list :li]
-    [:.popup :.button]
-    [:#instarepl :.livetoggler.off]
-    [:#version-info :.button]
-    [:#keybinding :button]
-    [:#statusbar :.console-toggle]
-    [:#browser :button]})
-
-(def selected
-  #{[:#sidebar :.current]
-    [:#multi :.list :.active]
-    [:#side :.clients :.list :.active]
-    [:#instarepl :.livetoggler]
-    [:.popup :.button.active]
-    [:#statusbar :.console-toggle.dirty]})
-
-(def inputs
-  #{[:#side #{:.navigate :.command} :input]
-    [:#find-bar :input]
-    [:#keybinding :.binder :input]
-    [:#browser :input]})
-
 (def inline-option-style
   (list
    :content (css-str " <")
    :float :right
    :background-color default-bg-color))
 
-(def inline-selectors
-  #{[:.CodeMirror-hints :ul]
-    [:#keybinding :.filter-list :ul]})
+(def inline-error-style
+  (list
+   :border [:1px :dashed :red]))
 
-(def selection-options
-  #{[:.filter-list #{:.selected (-> :li hover)}]
-    [:#keybinding :.filter-list :ul]})
-
-
-(def boxes
-  #{:#intro
-    [:.inline-result :.truncated]
-    [:.inline-result.open :.full]
-
-    [:#side :.clients (c-> :.list :ul :li)]
-    [:#side :.clients :.connector :li]
-
-    :#statusbar
-
-    :#bottombar
-
-    [:#instarepl :.usage]
-    [:#keybinding :.binder]
-    [:#keybinding :.all-mappings]
-    [:#keybinding :.all-mappings :tr]
-    [:#keybinding :ul.keys :li]
-
-    [:.console :> :li]})
-
-(def inline-errors
-  #{[:.inline-exception :pre]
-    [:#instarepl :.usage.exception]})
 
 ;; Style
 (defrules skin-style
-  [first-class-containers
+  [:body
    :background-color default-bg-color
    :color default-text-color]
 
@@ -229,8 +166,8 @@
        (string/replace ".cm-s-codemirror" (make-theme-css-class theme-name))))
 
 ; Write the css directly n LT folders.
-;(install-theme theme-name theme)
-;(install-skin theme-name skin)
+(install-theme theme-name theme)
+(install-skin theme-name skin)
 
 
 ;; write the pretty printed themes in the css folder of the project
@@ -247,7 +184,7 @@
                         skin-name ".css" )]
       (spit skin-path (apply css skin))))
 
-(write-theme theme-name theme)
-(write-skin theme-name skin)
+;(write-theme theme-name theme)
+;(write-skin theme-name skin)
 
 
