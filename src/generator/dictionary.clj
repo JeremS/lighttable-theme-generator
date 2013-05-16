@@ -150,10 +150,10 @@
 
    ; CONSOLE
    [:#bottombar :.content] "Content of the console"
-   (c-> :.console :li) "???"
+   [:.console :> :li] "???"
    [:.console :td]     "???"
-   (c-> :.console (c-+ :li :li)) "???"
-   (c-> :.console (c-+ :li.error :li)) "???"
+   [:.console :> :li :+ :li] "???"
+   [:.console :> :li.error :+ :li] "???"
    [:.console :li.error] "???"
    [:.console :li.error :table :td] "???"
    [:.console :li.error :tr:hover :td] "???"
@@ -177,7 +177,7 @@
 
    ; POPUP
    :.popup "Popup for confirmations, new versions ready... contains the whole screen"
-   (c-> :.popup :div :div) "The div enclosing the popup message"
+   [:.popup :> :div :> :div] "The div enclosing the popup message"
    [:.popup :.button] ""
    [:.popup (-> :.button hover)] ""
    [:.popup :.button.active] ""
@@ -227,29 +227,29 @@
    [:.filter-list (-> :li hover) :em] ""
 
    [:#side :.workspace :ul.buttons (-> :li hover (css-not :.sep))] "Workspace folder file and recent buttons"
-   [:#side :.workspace (c-> (-> :li hover) :div :p)] ""
+   [:#side :.workspace (-> :li hover) :> :div :> :p] ""
    [:#side :.workspace :li (-> :p hover)] ""
-   [:#side :.workspace (c-> :.recent :div :ul)] ""
-   [:#side :.workspace (c-> :.recent :div :ul :li)] ""
-   [:#side :.workspace (c-> :.recent :div :ul (-> :li first-child))] ""
-   [:#side :.workspace (c-> :.recent :div :ul (-> :li last-child))] ""
-   [:#side :.workspace (c-> :.recent :div :ul (c-+ :li  :li))] ""
-   [:#side :.workspace (c-> :.recent :div :ul (-> :li hover))] ""
-   [:#side :.workspace (c-> :.recent :div :ul (c-+ (-> :li hover) :li))] ""
+   [:#side :.workspace :.recent :> :div :> :ul] ""
+   [:#side :.workspace :.recent :> :div :> :ul :> :li] ""
+   [:#side :.workspace :.recent :> :div :> :ul (-> :li first-child)] ""
+   [:#side :.workspace :.recent :> :div :> :ul (-> :li last-child)] ""
+   [:#side :.workspace :.recent :> :div :> :ul :> :li :+ :li] ""
+   [:#side :.workspace :.recent :> :div :> :ul :> (-> :li hover)] ""
+   [:#side :.workspace :.recent :> :div :> :ul :> (-> :li hover) :+ :li] ""
    [:#side :.workspace :.recent (-> :h2 hover)] ""
 
 
    ; CONNECT MENU
-   [:#side :.clients (c-> :.list :ul :li)] "Clients wrappers"
+   [:#side :.clients :.list :> :ul :> :li] "Clients wrappers"
    [:#side :.clients :h2] "Type of clients"
    [:#side :.clients :td] ""
-   [:#side :.clients (c-+ :td :td)] ""
+   [:#side :.clients :td :+ :td] ""
    [:#side :.clients :.button] ""
 
    [:#side :.clients (-> :.button hover)] ""
    [:#side :.clients :.load-wrapper :.img] ""
    [:#side :.clients :.list :.active] ""
-   [:#side :.clients :.list (c-+ :li :li)] ""
+   [:#side :.clients :.list :li :+ :li] ""
    [:#side :.clients :.list :.active :*] "Every child in the box of the active client"
 
    [:#side :.clients :.list :.active :.button] ""
@@ -258,11 +258,11 @@
    [:#side :.clients :.connector (-> :li first-child)] ""
    [:#side :.clients :.connector (-> :li last-child)] ""
 
-   [:#side :.clients :.connector (c-+ :li :li)] ""
+   [:#side :.clients :.connector :li :+ :li] ""
    [:#side :.clients :.connector :li :h2] ""
    [:#side :.clients :.connector (-> :li hover) :h2] ""
    [:#side :.clients :.connector (-> :li hover)] ""
-   [:#side :.clients :.connector (c-+ (-> :li hover) :li)] ""
+   [:#side :.clients :.connector (-> :li hover) :+ :li] ""
    [:#side :.clients (-> :.toggle hover)] "The Add Connection button."
 
 
@@ -286,7 +286,7 @@
    [:#keybinding :.binder :input] "inputs in the left part"
    [:#keybinding :.all-mappings] "Pane displaying the bindings already in place"
    [:#keybinding :.filter-list :ul] ""
-   [:#keybinding :.all-mappings (c-> :td :ul (-> :li hover))] ""
+   [:#keybinding :.all-mappings :td :> :ul :> (-> :li hover)] ""
    [:#keybinding :.all-mappings (-> :li hover) :.remove] ""
    [:#keybinding :.all-mappings :li (-> :.remove hover)] ""
    [:#keybinding :button] ""
@@ -305,10 +305,3 @@
    [:.docs "::-webkit-scrollbar-thumb"] ""
 
    })
-
-
-(defn CM-sels []
-  (-> code-mirror-classes keys set))
-
-(defn LT-sels []
-  (-> lighttable-skin keys set))

@@ -115,10 +115,7 @@
   (css-comment "Completions ")
   [inline-selectors inline-option-style]
 
-  (css-comment "clients")
-  [#{[:#side :.clients (c-> :.list :ul (c-+ :li :li))]
-     [:#side :.clients :.connector :li]}
-   :margin-top :3px]
+
 
   (css-comment "boxes")
   [boxes box-style]
@@ -129,25 +126,7 @@
   (css-comment "Underlining propositions")
   [[:.filter-list :em] :border-bottom [:1px :solid default-text-color]]
 
-  (css-comment "Positionning")
-  [[:#sidebar :li]
-   :margin-right :5px
-
-   [(-> & last-child)
-    :margin-right :30px]] ;; todo -> move dow the buttons
-
-  [:#multi
-   [:.list :margin-left :10px
-    [:li :margin-left :5px]]
-   [[:.tabset :+ :.tabset]
-    :border-left [:1px :dotted default-text-color]]]
-
-  [:#bottombar :margin-bottom :-2px]
-  [[:.console :> :li] :margin-bottom :2px]
-
-  [[:#side :.content]
-   :margin [0 :10px]
-   :height :99.6%]
+  positionning-perso
 
   (css-comment "misc")
   [:intro :background-color (-> default-bg-color colors/inverse (colors/lighten 50))])

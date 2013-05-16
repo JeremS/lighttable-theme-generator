@@ -35,6 +35,9 @@ a {
 #multi .list {
   background: transparent;
 }
+  #multi .list .tabset + .tabset {
+    border-left: 1px dotted rgba(0,0,0,1.0);
+  }
   #multi .list li {
     color: rgba(0,0,0,1.0);
     background: rgba(255,255,255,1.0);
@@ -216,15 +219,10 @@ body {
   float: right;
   content: " <";
 }
-/* clients */
-#side .clients .list > ul > li + li, 
-#side .clients .connector li {
-  margin-top: 3px;
-}
 /* boxes */
 .console > li, 
-#intro, 
 #side .clients .list > ul > li, 
+#intro, 
 #bottombar, 
 .inline-result .truncated, 
 #keybinding .all-mappings, 
@@ -260,9 +258,6 @@ body {
   #multi .list li {
     margin-left: 5px;
   }
-#multi .tabset + .tabset {
-  border-left: 1px dotted rgba(0,0,0,1.0);
-}
 #bottombar {
   margin-bottom: -2px;
 }
@@ -272,6 +267,10 @@ body {
 #side .content {
   height: 99.6%;
   margin: 0 10px;
+}
+#side .clients .connector li, 
+#side .clients .list > ul > li + li {
+  margin-top: 3px;
 }
 /* misc */
 intro {

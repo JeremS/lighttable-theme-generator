@@ -47,7 +47,7 @@
     [:.inline-result :.truncated]
     [:.inline-result.open :.full]
 
-    [:#side :.clients (c-> :.list :ul :li)]
+    [:#side :.clients :.list :> :ul :> :li]
     [:#side :.clients :.connector :li]
 
     :#statusbar
@@ -65,4 +65,27 @@
 (def inline-errors
   #{[:.inline-exception :pre]
     [:#instarepl :.usage.exception]})
+
+(defrules positionning-perso
+  (css-comment "Positionning")
+  [[:#sidebar :li]
+   :margin-right :5px
+
+   [(-> & last-child)
+    :margin-right :30px]] ;; todo -> move dow the buttons
+
+  [:#multi
+   [:.list :margin-left :10px
+    [:li :margin-left :5px]]]
+
+  [:#bottombar :margin-bottom :-2px]
+  [[:.console :> :li] :margin-bottom :2px]
+
+  [[:#side :.content]
+   :margin [0 :10px]
+   :height :99.6%]
+
+  [#{[:#side :.clients :.list :> :ul :> :li :+ :li]
+     [:#side :.clients :.connector :li]}
+   :margin-top :3px])
 

@@ -42,19 +42,24 @@
 
      [:#multi
       [:.list
-        transparent-bg
+       transparent-bg
+
+       [[:.tabset :+ :.tabset]
+        :border-left [:1px :dotted text-color]]
 
        [:li :box-sizing :border-box
-            :height :29px
-            reset-colors]
+        :height :29px
+        reset-colors]
 
        [(-> :.dirty after) :content (css-str "*")]]
 
       [(-> :.dirty.ui-sortable-placeholder after)
        :content [(css-str "") "!important"]]]
 
+
+
      [:#side
-      [[:.workspace (c-> :.recent :div :ul)]
+      [[:.workspace :.recent :> :div :> :ul]
         :margin-top :15px]
 
       [[:.clients :.load-wrapper :.img]
