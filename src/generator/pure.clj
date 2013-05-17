@@ -4,9 +4,13 @@
   (:use cljss.core
         generator.common
         [generator.reset :only (make-reset-rules)]
-        [generator.core :only (make-theme-css-class make-theme-path
-                               install-skin install-theme print-css
-                               file-separator)]))
+        [generator.core :only (make-theme-css-class
+                               make-theme-path
+                               install-skin
+                               install-theme
+                               write-skin
+                               write-theme
+                               print-css)]))
 
 ; little black and white theme.
 
@@ -148,26 +152,11 @@
 
 ; Write the css directly in LT folders.
 ;(install-theme theme-name theme)
-;(install-skin theme-name skin)
+(install-skin theme-name skin)
 
 
 ;; write the pretty printed themes in the css folder of the project
-(defn write-theme [theme-name theme]
-  (let [theme-name (str theme-name "-theme")
-        theme-path (str (System/getProperty "user.dir") file-separator
-                        "css" file-separator
-                        theme-name ".css" )]
-      (spit theme-path (apply css theme))))
-
-(defn write-skin [skin-name skin]
-  (let [skin-path (str (System/getProperty "user.dir") file-separator
-                       "css" file-separator
-                        skin-name ".css" )]
-      (spit skin-path (apply css skin))))
-
-
-
-(write-theme theme-name theme)
-(write-skin theme-name skin)
+;(write-theme theme-name theme)
+;(write-skin theme-name skin)
 
 

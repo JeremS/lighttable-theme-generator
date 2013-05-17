@@ -1,6 +1,6 @@
 (ns generator.core
   (:require [clojure.string :as string])
-  (:use [cljss.core :only (css-with-style)]
+  (:use [cljss.core :only (css-with-style css)]
         [cljss.compilation :only (styles)]))
 
 
@@ -51,4 +51,16 @@
   (let [skin-path (make-skin-path skin-name)]
       (compile-css skin (partial spit skin-path))))
 
+(defn write-theme [theme-name theme]
+  (let [theme-name (str theme-name "-theme")
+        theme-path (str (System/getProperty "user.dir") file-separator
+                        "css" file-separator
+                        theme-name ".css" )]
+      (spit theme-path (apply css theme))))
+
+(defn write-skin [skin-name skin]
+  (let [skin-path (str (System/getProperty "user.dir") file-separator
+                       "css" file-separator
+                        skin-name ".css" )]
+      (spit skin-path (apply css skin))))
 
