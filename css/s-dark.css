@@ -241,6 +241,17 @@ body {
 .console > li {
   border-bottom: 3px dashed rgba(7,54,66,1.0);
 }
+/* inline results */
+.inline-result .truncated, 
+.inline-result.open .full, 
+#instarepl .usage {
+  color: rgba(147,161,161,1.0);
+  background-color: rgba(7,54,66,1.0);
+}
+.inline-exception pre, 
+#instarepl .usage.exception {
+  background-color: rgba(220,50,47,1.0);
+}
 /* Positionning */
 #sidebar li {
   margin-right: 5px;

@@ -156,6 +156,12 @@
     [:#keybinding :ul.keys :li]
     })
 
+
+(defn inline-res-style [scheme]
+  {:background-color (tone scheme base02)
+   :color (tone scheme base1)})
+
+
 (defn skin [scheme]
   (rules
    (css-comment "Generated from ../src/generator/pure.clj")
@@ -201,6 +207,13 @@
    [[:.console :> :li]
     :border-bottom [:3px :dashed (tone scheme base02)]]
 
+   (css-comment "inline results")
+   [#{inline-results inline-usage}
+    (inline-res-style scheme)]
+
+   [inline-errors
+    :background-color red]
+
    (css-comment "Positionning")
    [[:#sidebar :li]
     :margin-right :5px]
@@ -223,6 +236,9 @@
     :margin-left :10px]
    [:#find-bar
     :margin-left :10px]))
+
+
+
 
 (defn theme [theme-name scheme]
   (rules
@@ -329,17 +345,17 @@
 
 
 ; Write the css directly in LT folders.
-;(install-theme light-name light-theme)
-;(install-theme dark-name dark-theme)
+(install-theme light-name light-theme)
+(install-theme dark-name dark-theme)
 
-;(install-skin light-name light-skin)
-;(install-skin dark-name dark-skin)
+(install-skin light-name light-skin)
+(install-skin dark-name dark-skin)
 
 
 ;; write the pretty printed themes in the css folder of the project
-;(write-skin light-name light-skin)
-;(write-theme light-name light-theme)
+(write-skin light-name light-skin)
+(write-theme light-name light-theme)
 
-;(write-skin dark-name dark-skin)
-;(write-theme dark-name dark-theme)
+(write-skin dark-name dark-skin)
+(write-theme dark-name dark-theme)
 

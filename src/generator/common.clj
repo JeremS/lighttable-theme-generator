@@ -54,6 +54,9 @@
   #{[:.inline-result :.truncated]
     [:.inline-result.open :.full]})
 
+(def inline-usage
+  #{[:#instarepl :.usage]})
+
 (def inline-errors
   #{[:.inline-exception :pre]
     [:#instarepl :.usage.exception]})
