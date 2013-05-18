@@ -96,7 +96,6 @@
        [:span.CodeMirror-matchingbracket
         :box-sizing :border-box
         transparent-bg
-        :border-bottom [:1px :solid :black]
         :font-weight :normal]
 
        [:span.CodeMirror-nonmatchingbracket

@@ -8,9 +8,10 @@
                                install-theme
                                write-skin
                                write-theme
-                               print-css)]
+                               print-css
+                               make-theme-css-class)]))
 
-        clojure.pprint))
+
 
 ;; Solarized palette
 (def base03    (rgba 0x00 0x2b 0x36))
@@ -78,8 +79,12 @@
 (def border-box
   '(:box-sizing :border-box))
 
+(defn dotted [scheme]
+  {:border [:2px :dotted (tone scheme base02)]})
+
+
 (def button-color
-  {:light {:1 (tone :light base03) :2 red }
+  {:light {:1 orange :2 blue }
    :dark  {:1 yellow :2 cyan}})
 
 (defn default-transition [& properties]
@@ -88,7 +93,7 @@
 (defn button-style [scheme]
   (list
    border-box
-   :border [:2px :dotted (tone scheme base02)]
+   (dotted scheme)
    :background-color (tone scheme base03)
    :color (-> button-color scheme :1)
    :border-radius :10px
@@ -134,7 +139,8 @@
   (list
    :background-color (tone scheme base03)
    :border-radius :5px
-   :border [:1px :solid (tone scheme base03)]))
+   border-box
+   (dotted scheme)))
 
 (def panes
   #{:#statusbar
@@ -193,7 +199,7 @@
    [panes (pane-style scheme)]
 
    [[:.console :> :li]
-    :border-bottom [:3px :dotted (tone scheme base02)]]
+    :border-bottom [:3px :dashed (tone scheme base02)]]
 
    (css-comment "Positionning")
    [[:#sidebar :li]
@@ -209,19 +215,105 @@
 
    [:#intro :background-color (tone scheme base03)]
 
+   [:#statusbar
+    :left :10px
+    :width :auto]
+
+   [:#bottombar
+    :margin-left :10px]
+   [:#find-bar
+    :margin-left :10px]
+
+
 
    ))
 
 
+(defn theme [theme-name scheme]
+  (rules
+   (css-comment "Generated from ../src/generator/pure.clj")
+   [(make-theme-css-class theme-name)
+    :background-color (tone scheme base03)
+    :border-radius :10px
+
+    [:.cm-keyword :color orange]
+    [:.cm-atom :color magenta]
+    [:.cm-number :color magenta]
+    [:.cm-def :color cyan]
+
+    [:.cm-variable   :color blue]
+    [:.cm-variable-2 :color yellow]
+    [:.cm-variable-3 :color violet]
+
+    [:.cm-property :color cyan]
+    [:.cm-operator :color violet]
+
+    [:.cm-comment :color (tone scheme base01)]
+
+    [:.cm-string :color green]
+    [:.cm-string-2 :color yellow]
+
+
+    [:.cm-meta :color green]
+
+    [#{:.cm-error :.cm-invalidchar}
+     :color (tone scheme base01)
+     :border-bottom [:1px :dotted red]]
+
+    [:.cm-qualifier :color yellow]
+    [:.cm-builtin :color magenta]
+    [:.cm-bracket :color orange]
+    [:.CodeMirror-matchingbracket :color green]
+    [:.cm-CodeMirror-nonmatchingbracket :color red]
+    [:.cm-tag       :color (tone scheme base1)]
+    [:.cm-attribute :color cyan]
+    [:.cm-header    :color (tone scheme base01)]
+    [:.cm-quote     :color (tone scheme base1)]
+
+    [:.cm-hr
+     :color :transparent
+     :border-top [:1px :solid (tone scheme base01)]
+     :display :block]
+
+
+    [:.cm-link
+     :color (tone scheme base1)
+     :cursor :pointer]
+    [:.cm-special :color violet]
+    [:.cm-em
+     :color "#999"
+     :text-decoration :underline
+     :text-decoration-style :dotted]
+
+
+    [:.cm-strong :color "#999"]
+
+    [#{:.CodeMirror-focused
+       :.CodeMirror-selected
+       "::selection"}
+     :background-color "386774"
+     :color :inherit]
+
+    [:.CodeMirror-selected :color (tone scheme base01)]
+
+    [:.CodeMirror-gutters
+     :background-color (tone scheme base03)
+     :border-color "#00232c"]
+
+    [:.CodeMirror-linenumber
+     :color (tone scheme base01)]
+
+    [:.activeline
+     :background-color (rgba 255 255 255 0.07)]
+
+
+    [:.cm- :color violet]
+
+
+    ]))
 
 
 
-(def light-skin (skin :light))
-(def light-theme "")
-
-
-(def dark-skin (skin :dark))
-(def dark-theme "")
 
 
 
@@ -234,12 +326,17 @@
 ;; ----------------------------------------------------------------------------
 
 (def light-name "s-light")
+(def light-skin (skin :light))
+(def light-theme (theme light-name :light))
+
 (def dark-name "s-dark")
+(def dark-skin (skin :dark))
+(def dark-theme (theme dark-name :dark))
 
 
 ; Write the css directly in LT folders.
-;(install-theme light-name light-theme)
-;(install-theme dark-name dark-theme)
+(install-theme light-name light-theme)
+(install-theme dark-name dark-theme)
 
 (install-skin light-name light-skin)
 (install-skin dark-name dark-skin)

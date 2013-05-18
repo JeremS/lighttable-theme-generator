@@ -135,7 +135,9 @@ body {
   background-color: rgba(255,255,255,1.0);
 }
 /* button style */
+#keybinding .all-mappings .remove, 
 #statusbar .console-toggle, 
+#side .workspace .recent h2, 
 #keybinding button, 
 #side .workspace ul.buttons li:not(.sep), 
 #version-info .button, 
@@ -157,6 +159,8 @@ body {
   #version-info .button:hover, 
   #side .workspace ul.buttons li:not(.sep):hover, 
   #keybinding button:hover, 
+  #side .workspace .recent h2:hover, 
+  #keybinding .all-mappings .remove:hover, 
   #statusbar .console-toggle:hover, 
   #side .clients .connector li:hover, 
   #multi .list li:hover, 

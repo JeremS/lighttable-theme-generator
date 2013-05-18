@@ -185,6 +185,13 @@
 
 (defrules theme
   (css-comment "Generated from ../src/generator/pure.clj")
+  [:.CodeMirror
+   [:span.CodeMirror-matchingbracket
+    :box-sizing :border-box
+    :background-color :transparent
+    :border-bottom [:1px :solid :black]
+    :font-weight :normal]]
+
   (css-comment "Right now uses the code miror default theme.")
 
   (-> (make-theme-path "codemirror")
@@ -193,7 +200,7 @@
 
 ; Write the css directly in LT folders.
 ;(install-theme theme-name theme)
-(install-skin theme-name skin)
+;(install-skin theme-name skin)
 
 
 ;; write the pretty printed themes in the css folder of the project

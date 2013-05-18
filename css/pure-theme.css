@@ -1,4 +1,10 @@
 /* Generated from ../src/generator/pure.clj */
+.CodeMirror span.CodeMirror-matchingbracket {
+  font-weight: normal;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  box-sizing: border-box;
+}
 /* Right now uses the code miror default theme. */
 .cm-s-pure-theme { background: #fff; }
 .cm-s-pure-theme span.cm-keyword {color: #708;}
