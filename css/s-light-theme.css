@@ -1,0 +1,118 @@
+/* Generated from ../src/generator/pure.clj */
+.cm-s-s-light-theme {
+  border-radius: 10px;
+  background-color: rgba(253,246,227,1.0);
+}
+  .cm-s-s-light-theme .cm-keyword {
+    color: rgba(203,75,22,1.0);
+  }
+  .cm-s-s-light-theme .cm-atom {
+    color: rgba(211,54,130,1.0);
+  }
+  .cm-s-s-light-theme .cm-number {
+    color: rgba(211,54,130,1.0);
+  }
+  .cm-s-s-light-theme .cm-def {
+    color: rgba(42,161,152,1.0);
+  }
+  .cm-s-s-light-theme .cm-variable {
+    color: rgba(38,139,210,1.0);
+  }
+  .cm-s-s-light-theme .cm-variable-2 {
+    color: rgba(181,137,0,1.0);
+  }
+  .cm-s-s-light-theme .cm-variable-3 {
+    color: rgba(108,113,196,1.0);
+  }
+  .cm-s-s-light-theme .cm-property {
+    color: rgba(42,161,152,1.0);
+  }
+  .cm-s-s-light-theme .cm-operator {
+    color: rgba(108,113,196,1.0);
+  }
+  .cm-s-s-light-theme .cm-comment {
+    color: rgba(147,161,161,1.0);
+  }
+  .cm-s-s-light-theme .cm-string {
+    color: rgba(133,153,0,1.0);
+  }
+  .cm-s-s-light-theme .cm-string-2 {
+    color: rgba(181,137,0,1.0);
+  }
+  .cm-s-s-light-theme .cm-meta {
+    color: rgba(133,153,0,1.0);
+  }
+  .cm-s-s-light-theme .cm-invalidchar, 
+  .cm-s-s-light-theme .cm-error {
+    border-bottom: 1px dotted rgba(220,50,47,1.0);
+    color: rgba(147,161,161,1.0);
+  }
+  .cm-s-s-light-theme .cm-qualifier {
+    color: rgba(181,137,0,1.0);
+  }
+  .cm-s-s-light-theme .cm-builtin {
+    color: rgba(211,54,130,1.0);
+  }
+  .cm-s-s-light-theme .cm-bracket {
+    color: rgba(203,75,22,1.0);
+  }
+  .cm-s-s-light-theme .CodeMirror-matchingbracket {
+    color: rgba(133,153,0,1.0);
+  }
+  .cm-s-s-light-theme .cm-CodeMirror-nonmatchingbracket {
+    color: rgba(220,50,47,1.0);
+  }
+  .cm-s-s-light-theme .cm-tag {
+    color: rgba(88,110,117,1.0);
+  }
+  .cm-s-s-light-theme .cm-attribute {
+    color: rgba(42,161,152,1.0);
+  }
+  .cm-s-s-light-theme .cm-header {
+    color: rgba(147,161,161,1.0);
+  }
+  .cm-s-s-light-theme .cm-quote {
+    color: rgba(88,110,117,1.0);
+  }
+  .cm-s-s-light-theme .cm-hr {
+    display: block;
+    border-top: 1px solid rgba(147,161,161,1.0);
+    color: transparent;
+  }
+  .cm-s-s-light-theme .cm-link {
+    cursor: pointer;
+    color: rgba(88,110,117,1.0);
+  }
+  .cm-s-s-light-theme .cm-special {
+    color: rgba(108,113,196,1.0);
+  }
+  .cm-s-s-light-theme .cm-em {
+    text-decoration-style: dotted;
+    text-decoration: underline;
+    color: #999;
+  }
+  .cm-s-s-light-theme .cm-strong {
+    color: #999;
+  }
+  .cm-s-s-light-theme ::selection, 
+  .cm-s-s-light-theme .CodeMirror-focused, 
+  .cm-s-s-light-theme .CodeMirror-selected {
+    color: inherit;
+    background-color: 386774;
+  }
+  .cm-s-s-light-theme .CodeMirror-selected {
+    color: rgba(147,161,161,1.0);
+  }
+  .cm-s-s-light-theme .CodeMirror-gutters {
+    border-color: #00232c;
+    background-color: rgba(253,246,227,1.0);
+  }
+  .cm-s-s-light-theme .CodeMirror-linenumber {
+    color: rgba(147,161,161,1.0);
+  }
+  .cm-s-s-light-theme .CodeMirror-cursor {
+    border-left: 1px solid #819090;
+  }
+  .cm-s-s-light-theme .activeline {
+    background-color: rgba(255,255,255,0.07);
+  }

@@ -222,12 +222,7 @@
    [:#bottombar
     :margin-left :10px]
    [:#find-bar
-    :margin-left :10px]
-
-
-
-   ))
-
+    :margin-left :10px]))
 
 (defn theme [theme-name scheme]
   (rules
@@ -303,12 +298,11 @@
     [:.CodeMirror-linenumber
      :color (tone scheme base01)]
 
+    [:.CodeMirror-cursor
+     :border-left [:1px :solid "#819090"]]
+
     [:.activeline
      :background-color (rgba 255 255 255 0.07)]
-
-
-    [:.cm- :color violet]
-
 
     ]))
 
@@ -335,13 +329,17 @@
 
 
 ; Write the css directly in LT folders.
-(install-theme light-name light-theme)
-(install-theme dark-name dark-theme)
+;(install-theme light-name light-theme)
+;(install-theme dark-name dark-theme)
 
-(install-skin light-name light-skin)
-(install-skin dark-name dark-skin)
+;(install-skin light-name light-skin)
+;(install-skin dark-name dark-skin)
 
 
 ;; write the pretty printed themes in the css folder of the project
-;(write-theme theme-name theme)
-;(write-skin theme-name skin)
+;(write-skin light-name light-skin)
+;(write-theme light-name light-theme)
+
+;(write-skin dark-name dark-skin)
+;(write-theme dark-name dark-theme)
+

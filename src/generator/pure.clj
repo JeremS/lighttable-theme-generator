@@ -173,6 +173,15 @@
      [:#side :.clients :.connector :li]}
    :margin-top :3px]
 
+  [:#statusbar
+    :left :10px
+    :width :auto]
+
+   [:#bottombar
+    :margin-left :10px]
+   [:#find-bar
+    :margin-left :10px]
+
   (css-comment "misc")
   [:intro :background-color (-> default-bg-color colors/inverse (colors/lighten 50))])
 

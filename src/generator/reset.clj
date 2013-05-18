@@ -87,10 +87,10 @@
        :font-weight :normal]
 
      [:.CodeMirror
-       [:div.CodeMirror-cursor
+       [:.CodeMirror-cursor
          :border-left [:1px :solid text-color]]
 
-       [:div.CodeMirror-secondarycursor
+       [:.CodeMirror-secondarycursor
          :border-left [:1px :solid :silver]]
 
        [:span.CodeMirror-matchingbracket
@@ -121,11 +121,9 @@
 
        :max-height :20em
        :overflow-y :auto
-       reset-colors
 
        [:input :display :none]
        [:ul
-        reset-colors
         [:li
          :margin 0
          :padding [0 :4px]
