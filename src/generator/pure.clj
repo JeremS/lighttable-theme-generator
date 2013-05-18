@@ -93,6 +93,27 @@
    :border [:1px :dashed :red]))
 
 
+(def boxes
+  #{:#intro
+    [:.inline-result :.truncated]
+    [:.inline-result.open :.full]
+
+    [:#side :.clients :.list :> :ul :> :li]
+    [:#side :.clients :.connector :li]
+
+    :#statusbar
+
+    :#bottombar
+
+    [:#instarepl :.usage]
+    [:#keybinding :.binder]
+    [:#keybinding :.all-mappings]
+    [:#keybinding :.all-mappings :tr]
+    [:#keybinding :ul.keys :li]
+
+    [:.console :> :li]})
+
+
 ;; Style
 (defrules skin-style
   [:body
@@ -130,7 +151,27 @@
   (css-comment "Underlining propositions")
   [[:.filter-list :em] :border-bottom [:1px :solid default-text-color]]
 
-  positionning-perso
+  (css-comment "Positionning")
+  [[:#sidebar :li]
+   :margin-right :5px
+
+   [(-> & last-child)
+    :margin-right :30px]]
+
+  [:#multi
+   [:.list :margin-left :10px
+    [:li :margin-left :5px]]]
+
+  [:#bottombar :margin-bottom :-2px]
+  [[:.console :> :li] :margin-bottom :2px]
+
+  [[:#side :.content]
+   :margin [0 :10px]
+   :height :99.6%]
+
+  [#{[:#side :.clients :.list :> :ul :> :li :+ :li]
+     [:#side :.clients :.connector :li]}
+   :margin-top :3px]
 
   (css-comment "misc")
   [:intro :background-color (-> default-bg-color colors/inverse (colors/lighten 50))])

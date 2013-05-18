@@ -12,7 +12,7 @@
 
         clojure.pprint))
 
-
+;; Solarized palette
 (def base03    (rgba 0x00 0x2b 0x36))
 (def base02    (rgba 0x07 0x36 0x42))
 (def base01    (rgba 0x58 0x6e 0x75))
@@ -30,130 +30,131 @@
 (def cyan      (rgba 0x2a 0xa1 0x98))
 (def green     (rgba 0x85 0x99 0x00))
 
+
+;; utilities
 (def accents
-  {:yellow yellow
-   :orange orange
-   :red red
-   :magenta magenta
-   :violet violet
-   :blue blue
-   :cyan cyan
-   :green green})
+  {yellow yellow
+   orange orange
+   red red
+   magenta magenta
+   violet violet
+   blue blue
+   cyan cyan
+   green green})
 
 (def default-scheme
   {:dark (merge accents
-                {:base03 base03
-                 :base02 base02
-                 :base01 base01
-                 :base00 base00
-                 :base0 base0
-                 :base1 base1
-                 :base2 base2
-                 :base3 base3})
+                {base03 base03
+                 base02 base02
+                 base01 base01
+                 base00 base00
+                 base0 base0
+                 base1 base1
+                 base2 base2
+                 base3 base3})
    :light (merge accents
-                 {:base03 base3
-                  :base02 base2
-                  :base01 base1
-                  :base00 base0
-                  :base0 base00
-                  :base1 base01
-                  :base2 base02
-                  :base3 base03})
+                 {base03 base3
+                  base02 base2
+                  base01 base1
+                  base00 base0
+                  base0 base00
+                  base1 base01
+                  base2 base02
+                  base3 base03})
    })
 
-
-(def relations
-  {:base03 {:up nil
-            :down :base02}
-
-   :base02 {:lighten :base03
-            :darken :base01}
-
-   :base01 {:up :base02
-            :down :base0}
-
-   :base00 {:up :base01
-            :down :base0}
-
-   :base0 {:up :base00
-           :down :base1}
-
-   :base1 {:up :base0
-           :down :base2}
-
-   :base2 {:up :base1
-           :down :base3}
-
-   :base3 {:up :base2
-           :down :nil}})
-
-(defn walk [c direction]
-  (-> relations c direction))
+(defn tone [scheme base]
+  (get-in default-scheme [scheme base]))
 
 
-(def lighten-directions
-  {:light :down
-   :dark :up})
-
-(def darken-directions
-  {:light :down
-   :dark :up})
-
-
-(defn lighten [c scheme]
-  (if-let [c (walk c (lighten-directions scheme))]
-    c
-    (throw (ex-info "Can't lighten this color." {:color c :scheme scheme}))))
-
-
-
-(def exchange
-  {:light :dark
-   :dark  :light})
+;; palette usage
 
 (defn bg-color [scheme]
-  (-> default-scheme scheme :base03))
+  (tone scheme base02))
 
 (defn text-color [scheme]
-  (-> default-scheme scheme :base0))
+  (tone scheme base0))
+
+(def border-box
+  '(:box-sizing :border-box))
 
 (def button-color
-  {:light {:1 magenta :2 orange}
+  {:light {:1 (tone :light base03) :2 red }
    :dark  {:1 yellow :2 cyan}})
-
-(def border-color text-color)
-
 
 (defn default-transition [& properties]
   (mapcat #(list :transition [% :0.2s :ease]) properties))
 
 (defn button-style [scheme]
   (list
-   :background-color (bg-color scheme)
+   border-box
+   :border [:2px :dotted (tone scheme base02)]
+   :background-color (tone scheme base03)
+   :color (-> button-color scheme :1)
    :border-radius :10px
-   :color (-> button-color scheme :1
-              (colors/desaturate 25))
    :text-shadow [:0px :0px :3px (-> button-color scheme :2)]
 
    (default-transition :all)
 
    [(-> & hover)
     :color (-> button-color scheme :2)
+    :background-color (bg-color scheme)
     :text-shadow :none
     :box-shadow
-      [:0px :0px :10px (-> button-color scheme :1)]]))
+      [:0px :0px :10px (-> button-color scheme :2)]]))
+
 
 (defn selected-style [scheme]
   (list
-   :background-color (bg-color scheme)
+   :background-color (tone scheme base02)
    (default-transition :all)
    :text-shadow :none
-   :color (-> button-color scheme :2)))
+   :color (-> button-color scheme :2)
+   :box-shadow
+      [:0px :0px :10px (-> button-color scheme :2)]))
 
+(defn input-style [scheme]
+  (list
+   :color (text-color scheme)
+   :background-color (tone scheme base03)
+   :box-shadow [:inset :0px :0px :20px (tone scheme base02)]
+   [(-> & focus)
+    :color (text-color scheme)]))
+
+(defn selections-style [scheme]
+  (list
+   :background-color (tone scheme base02)
+   :border-radius :10px))
+
+(defn inline-boxes-style [scheme]
+  (list
+   :background-color (tone scheme base03)))
+
+(defn pane-style [scheme]
+  (list
+   :background-color (tone scheme base03)
+   :border-radius :5px
+   :border [:1px :solid (tone scheme base03)]))
+
+(def panes
+  #{:#statusbar
+    :#bottombar
+    [:#side :.workspace :ul.root]
+    [:#side :.workspace :.recent :> :div :> :ul]
+    [:#side :.navigate :ul]
+    [:#side :.command :ul]
+
+    [:#side :.clients :.list :> :ul :> :li]
+
+    [:#keybinding :.binder]
+    [:#keybinding :ul.keys :li]
+    })
 
 (defn skin [scheme]
   (rules
    (css-comment "Generated from ../src/generator/pure.clj")
+
+   (make-reset-rules (bg-color scheme) (text-color scheme))
 
    [[:html :*] :color-profile :sRGB
     :rendering-intent :auto]
@@ -161,7 +162,6 @@
    [:body
     :background-color (bg-color scheme)]
 
-   (make-reset-rules (bg-color scheme) (text-color scheme))
    (css-comment "button style")
    [buttons (button-style scheme)]
    [[:#side :.clients :.connector :li :h2]
@@ -170,6 +170,45 @@
 
    (css-comment "selectables style")
    [selected (selected-style scheme)]
+
+
+   (css-comment "inputs")
+   [inputs (input-style scheme)]
+   ["::-webkit-input-placeholder"
+    :color (tone scheme base00)]
+
+
+   (css-comment "selections")
+   [#{[:.filter-list #{:.selected (-> :li hover)}]
+      [:#keybinding :.filter-list :ul]
+      [:#side :.workspace :li (-> :p hover)]
+      [:#side :.workspace :.recent :> :div :> :ul :> (-> :li hover)]}
+    (selections-style scheme)]
+
+   (css-comment "completion box...")
+   [inline-selectors (inline-boxes-style scheme)]
+
+
+   (css-comment "panes")
+   [panes (pane-style scheme)]
+
+   [[:.console :> :li]
+    :border-bottom [:3px :dotted (tone scheme base02)]]
+
+   (css-comment "Positionning")
+   [[:#sidebar :li]
+    :margin-right :5px]
+
+   [:#multi
+    [:.list :margin-left :10px
+     [:li :margin-left :5px]]]
+
+   [#{[:#side :.clients :.list :> :ul :> :li :+ :li]
+      [:#side :.clients :.connector :li]}
+    :margin-top :3px]
+
+   [:#intro :background-color (tone scheme base03)]
+
 
    ))
 
