@@ -345,17 +345,17 @@
 
 
 ; Write the css directly in LT folders.
-(install-theme light-name light-theme)
-(install-theme dark-name dark-theme)
+;(install-theme light-name light-theme)
+;(install-theme dark-name dark-theme)
 
-(install-skin light-name light-skin)
-(install-skin dark-name dark-skin)
+;(install-skin light-name light-skin)
+;(install-skin dark-name dark-skin)
 
 
 ;; write the pretty printed themes in the css folder of the project
-(write-skin light-name light-skin)
-(write-theme light-name light-theme)
+;(write-skin light-name light-skin)
+;(write-theme light-name light-theme)
 
-(write-skin dark-name dark-skin)
-(write-theme dark-name dark-theme)
+;(write-skin dark-name dark-skin)
+;(write-theme dark-name dark-theme)
 
